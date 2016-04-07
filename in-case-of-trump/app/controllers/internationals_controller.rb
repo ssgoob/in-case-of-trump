@@ -1,0 +1,2 @@
+class InternationalsController < ApplicationController
+end

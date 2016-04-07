@@ -1,0 +1,2 @@
+class CitizensController < ApplicationController
+end

@@ -9,10 +9,13 @@
 <%= f.label :gender %>
 <%= f.select :gender, ['M', 'F', 'GQ', 'Trans', 'Other'] %>
 
+<%= f.label :status %>
+<%= f.select :status, ['Citizen', 'International'] %>
+
 <%= f.label :preference %>
 <%= f.select :preference, ['Male', 'Female', 'Both'] %>
 
-<%= f.submit "Escape!" %>
+<%= f.submit %>
 
 <% end %>
 

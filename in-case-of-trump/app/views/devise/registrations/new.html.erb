@@ -2,8 +2,6 @@
 
 
 <%= form_for @user do |f| %>
-<!-- <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %> -->
 
   <div class="field">
     <%= f.label :email %><br />
@@ -23,26 +21,30 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <%= f.label :name %>
+  <div class="field">
+  <%= f.label :name %><br />
   <%= f.text_field :name, placeholder: "Enter name" %>
+  </div>
 
-  <%= f.label :dob %>
+  <div class="field">
+  <%= f.label :dob, "Date of Birth" %><br />
   <%= f.date_select :dob, start_year: Time.now.year - 100, end_year: Time.now.year - 18  %>
+  </div>
 
-  <%= f.label :gender %>
+  <div class="field">
+  <%= f.label :gender %><br />
   <%= f.select :gender, ['M', 'F', 'GQ', 'Trans', 'Other'] %>
+  </div>
 
-
-
-  <%= f.label :preference %>
+  <div class="field">
+  <%= f.label :preference %><br />
   <%= f.select :preference, ['Male', 'Female', 'Both'] %>
-
-  
-
+  </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+  <%= f.submit "Sign up" %>
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>
+
+

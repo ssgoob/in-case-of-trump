@@ -11,6 +11,8 @@ describe User do
 
   #users, citizen, and international connections
   describe '#create' do
+    user = create(:user)
+    visit user_path(user)
     it 'can create many users' do 
       expect(User.all.count).to eq(3)
     end

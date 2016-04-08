@@ -14,6 +14,7 @@ describe User do
   let!(:benjamin_karen) {Match.create(citizen_id: sally_citizen.id, international_id: benjamin_international.id, status: "pending c")}
 
   #users, citizen, and international connections
+
   describe '#create' do
     it 'can create many users' do 
       expect(User.all.count).to eq(4)
@@ -42,15 +43,16 @@ describe User do
     end
   end
 
-  # describe '#make_a_match' do
-  #   it 'creates a match when a citizen and an international like each other' do
-  #     expect(tito.make_a_match(karen).to eq(match))
-  #   end
 
-  #   it 'a match has a citizenId and an international Id' do
-  #     expect(match.citizen_id.to eq(karen.status_id))      
-  #   end
-  # end
+  describe '#make_a_match' do
+    it 'creates a match when a citizen and an international like each other' do
+      expect(tito.make_a_match(karen).to eq(match))
+    end
+
+    it 'a match has a citizenId and an international Id' do
+      expect(match.citizen_id.to eq(karen.status_id))      
+    end
+  end
 
 
 

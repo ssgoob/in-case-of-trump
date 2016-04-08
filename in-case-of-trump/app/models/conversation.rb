@@ -11,4 +11,10 @@
 class Conversation < ActiveRecord::Base
   belongs_to :match
   has_many :messages
+
+  # if Match status is 'success', create conversation using match_id
+  def create_conversation
+
+  end
+
 end

@@ -32,6 +32,7 @@ class Match < ActiveRecord::Base
   end
 
   def self.success_rate
+    binding.pry
     conversing_users / User.all.count
   end
 
@@ -39,5 +40,12 @@ class Match < ActiveRecord::Base
     1 - success_rate
   end
 
+  def set_status 
+    if self.citizen_id.class == Fixnum && self.international_id.class == Fixnum
+      self.status = 'success'
+    else
+      self.status = 'pending'
+    end
+  end
 
 end

@@ -8,8 +8,8 @@ describe Match do
   let!(:benjamin_international) {International.create(user: benjamin)}
   let!(:tito_citizen) {Citizen.create(user: tito)}
   let!(:karen_international) {International.create(user: karen)}
+  let!(:romance) {Match.create(citizen_id: 1, international_id: 2)}
 
-  #users, citizen, and international connections
   describe 'conversing users' do
     it 'can count number of users in conversation' do 
       expect(Match.conversing_users).to eq(0)
@@ -28,6 +28,11 @@ describe Match do
     end
   end
 
+  describe 'set status' do
+    it 'can change match status to success when two users match' do 
+      expect(romance.set_status).to eq('success')
+    end
+  end
 
 
 end

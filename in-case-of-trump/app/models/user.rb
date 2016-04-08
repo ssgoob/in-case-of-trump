@@ -16,20 +16,15 @@
 
 class User < ActiveRecord::Base
 
-  def initialize(*args) # &block
-    super
-    @likes = []
-  end
-
   def status
     (Citizen.find_by user_id: self.id) ? "Citizen" : "International"
   end
 
   def status_id
     if self.status == "Citizen"
-      Citizen.find_by(self.id)
+      Citizen.where("citizens.user_id = ?", self.id)[0].id
     else
-      International.find_by(self.id)
+      International.where("internationals.user_id = ?", self.id)[0].id
     end
   end
 
@@ -46,14 +41,31 @@ class User < ActiveRecord::Base
     match.map {|match| match.user}  
   end  
 
-  # the view will display matches accrording to all_matches criteria
-  def pick_a_match(match)
-     @likes.push(match)
-    return self.likes
-  end
+  def make_a_match(matchee)
+    if self.status == "Citizen"
+      citizen_id = self.status_id
+      international_id = matchee.status_id
+        match = Match.match_exist(citizen_id, international_id)
+        if match.present? && match.status == "pending c"
+          match.status == "Matched"
+          match.save
+        elsif !match.present? 
+          Match.create(citizen_id: citizen_id, international_id: international_id, status: "pending i")
+        end
+    else
+      citizen_id = matchee.status_id
+      international_id = self.status_id
+        match = Match.match_exist(citizen_id, international_id)
+        if match.present? && match.status == "pending i"
+          match.status == "Matched"
+          match.save
+        elsif !match.present? 
+          Match.create(citizen_id: citizen_id, international_id: international_id, status: "pending c")
+        end
 
-  def make_a_match(user)
-    match = Match.new(citizen_id: self.status_id, )
+
+    # (citizen_id: self.status_id, :international_id: )
+    end
   end
 
   # a citizen likes an international

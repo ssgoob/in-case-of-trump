@@ -9,6 +9,11 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
   config.order = "default"
   DatabaseCleaner.strategy = :truncation
+  
+  # config.before(:all) do
+  #   load Rails.root + "db/seeds.rb"
+  # end
+
   config.after(:all) do 
     DatabaseCleaner.clean
   end

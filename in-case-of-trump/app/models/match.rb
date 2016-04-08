@@ -39,5 +39,9 @@ class Match < ActiveRecord::Base
     1 - success_rate
   end
 
+  def self.match_exist(citizen_id, international_id)
+    Match.where("citizen_id = ? AND international_id = ?", citizen_id, international_id)
+  end
+
 
 end

@@ -15,8 +15,6 @@
 #
 
 class User < ActiveRecord::Base
-  has_many :matches
-  has_many :conversations, through: :matches
 
   def status
     (Citizen.find_by user_id: self.id) ? "Citizen" : "International"

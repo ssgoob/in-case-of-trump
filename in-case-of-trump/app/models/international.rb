@@ -9,5 +9,7 @@
 #
 
 class International < ActiveRecord::Base
+  has_many :matches
+  has_many :conversations, through: :matches
   belongs_to :user
 end

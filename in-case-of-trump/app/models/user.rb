@@ -26,4 +26,13 @@ class User < ActiveRecord::Base
     Time.now.year - self.dob.year
   end
 
+  def all_matches
+    if self.status == 'International'
+      match = Citizen.joins(:user).where('users.preference = ? AND users.gender = ?', self.gender, self.preference)
+    else
+      match = International.joins(:user).where('users.preference = ? AND users.gender = ?', self.gender, self.preference)
+    end
+    match.map {|match| match.user}  
+  end  
+
 end

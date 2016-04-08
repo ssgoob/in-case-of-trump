@@ -28,6 +28,18 @@ class User < ActiveRecord::Base
     end
   end
 
+
+  def citizen
+    if self.status == "Citizen"
+      Citizen.where("citizens.user_id = ?", self.id)[0]
+    end
+  end
+
+  def international
+    if self.status == "International"
+      International.where("internationals.user_id = ?", self.id)[0].id      
+  end
+  
   def age
     Time.now.year - self.dob.year
   end

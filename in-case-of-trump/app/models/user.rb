@@ -15,9 +15,6 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessor :likes
-  has_many :matches
-  has_many :conversations, through: :matches
 
   def initialize(*args) # &block
     super

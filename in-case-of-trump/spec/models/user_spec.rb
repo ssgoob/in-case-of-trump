@@ -38,5 +38,24 @@ describe User do
     end
   end
 
+  describe '#pick_a_match' do
+    it 'allows a user to select a match from all_matches' do
+      expect(tito.pick_a_match(karen)).to include(karen) 
+      expect(karen.pick_a_match(tito)).to include(tito) 
+    end
+  end
+
+  describe '#make_a_match' do
+    it 'creates a match when a citizen and an international like each other' do
+      expect(tito.make_a_match(karen).to eq(match))
+    end
+
+    it 'a match has a citizenId and an international Id' do
+      expect(match.citizen_id.to eq(karen.status_id))      
+    end
+  end
+
+
+
 end
   

@@ -1,0 +1,14 @@
+<%= f.label :name %>
+<%= f.text_field :name, placeholder: "Enter name" %><br>
+
+<%= f.label :dob %>
+<%= f.date_select :dob, start_year: Time.now.year - 100, end_year: Time.now.year %><br>
+
+<%= f.label :gender %>
+<%= f.select :gender, ['M', 'F', 'GQ', 'Trans', 'Other'] %><br>
+
+<%= f.label :status %>
+<%= f.select :status, ['Citizen', 'International'] %><br>
+
+<%= f.label :preference %>
+<%= f.select :preference, ['Male', 'Female', 'Both'] %><br>

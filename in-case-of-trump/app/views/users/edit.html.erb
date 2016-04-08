@@ -1,0 +1,15 @@
+<%= form_for @user do |f| %>
+  <%= render partial: 'form', locals: {f: f} %>
+  
+  <%= f.label :location %>
+  <%= f.text_field :location%><br>
+
+  <%= f.label :interests %>
+  <%= f.text_field :interests%><br>
+
+  <%= f.label :photos %>
+  <%= f.file_field :photos%><br>
+
+  <%= f.submit %>
+<% end %>
+

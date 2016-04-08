@@ -13,12 +13,18 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if(@user.save)
-        if(params[:status]=='Citizen')
+        if(params[:user][:status]=='Citizen')
+          citizen = Citizen.new
+          citizen.user = @user
+          citizen.save
           #make citizen and assign this user to citizen
         else
+          international = International.new
+          international.user = @user
+          international.save
           #make international and assign this user to international
         end
-      redirect @user
+      redirect_to @user
     else
       render :new
     end
@@ -28,11 +34,20 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params) ? (redirect_to @user) : (render :edit)
+  end
+
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :gender, :dob, :preference)
+    params.require(:user).permit(:name, :gender, :dob, :preference, :location, :preference, :interests, :photos)
   end
 
 

@@ -1,5 +1,5 @@
 
-benjamin = User.create(name: "Benjamin", preference: 'F', gender: 'M', status: "International")
+benjamin = User.create(name: "Benjamin", preference: 'F', gender: 'M', status: "International", dob: )
 karen = User.create(name: "Karen", preference: 'M', gender: 'F', status: "International")
 tito = User.create(name: "Tito", preference: 'F', gender: 'M', status: "Citizen")
 sally = User.create(name: "Sally", preference: 'M', gender: 'F', status: "Citizen")

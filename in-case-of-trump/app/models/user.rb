@@ -46,6 +46,7 @@ class User < ActiveRecord::Base
   end
   
   def age
+    binding.pry
     Time.now.year - self.dob.year
   end
 

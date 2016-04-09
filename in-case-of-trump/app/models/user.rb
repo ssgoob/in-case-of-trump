@@ -12,13 +12,18 @@
 #  photos     :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#
+#  email      :string
+#  status     :string
+
 
 class User < ActiveRecord::Base
 
-  def status
-    (Citizen.find_by user_id: self.id) ? "Citizen" : "International"
-  end
+  # validates :name, :gender, :dob, :status, :preference, presence: true
+  # validates :email, uniqueness: true 
+
+  # def status
+  #   (Citizen.find_by user_id: self.id) ? "Citizen" : "International"
+  # end
 
   def status_id
     if self.status == "Citizen"
@@ -27,7 +32,6 @@ class User < ActiveRecord::Base
       International.where("internationals.user_id = ?", self.id)[0].id
     end
   end
-
 
   def citizen
     if self.status == "Citizen"
@@ -38,6 +42,7 @@ class User < ActiveRecord::Base
   def international
     if self.status == "International"
       International.where("internationals.user_id = ?", self.id)[0].id      
+    end
   end
   
   def age
@@ -74,8 +79,6 @@ class User < ActiveRecord::Base
         elsif !match.present? 
           Match.create(citizen_id: citizen_id, international_id: international_id, status: "pending c")
         end
-
-
     # (citizen_id: self.status_id, :international_id: )
     end
   end

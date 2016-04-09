@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
 
   def international
     if self.status == "International"
-      International.where("internationals.user_id = ?", self.id)[0].id      
+      International.where("internationals.user_id = ?", self.id)[0]
     end
   end
   
@@ -55,6 +55,7 @@ class User < ActiveRecord::Base
     else
       match = International.joins(:user).where('users.preference = ? AND users.gender = ?', self.gender, self.preference)
     end
+    binding.pry
     match.map {|match| match.user}  
   end  
 

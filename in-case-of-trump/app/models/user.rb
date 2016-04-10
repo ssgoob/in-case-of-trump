@@ -1,21 +1,3 @@
-# == Schema Information
-#
-# Table name: users
-#
-#  id         :integer          not null, primary key
-#  name       :string
-#  gender     :string
-#  dob        :datetime
-#  location   :string
-#  preference :string
-#  interests  :string
-#  photos     :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  email      :string
-#  status     :string
-
-
 class User < ActiveRecord::Base
   has_many :user_interests
   has_many :interests, through: :user_interests
@@ -23,9 +5,9 @@ class User < ActiveRecord::Base
   # validates :name, :gender, :dob, :status, :preference, presence: true
   # validates :email, uniqueness: true 
 
-  # def status
-  #   (Citizen.find_by user_id: self.id) ? "Citizen" : "International"
-  # end
+  def status
+    (Citizen.find_by user_id: self.id) ? "Citizen" : "International"
+  end
 
   def status_id
     if self.status == "Citizen"
@@ -43,7 +25,7 @@ class User < ActiveRecord::Base
 
   def international
     if self.status == "International"
-      International.where("internationals.user_id = ?", self.id)[0].id      
+      International.where("internationals.user_id = ?", self.id)[0]
     end
   end
   
@@ -65,23 +47,32 @@ class User < ActiveRecord::Base
       citizen_id = self.status_id
       international_id = matchee.status_id
         match = Match.match_exist(citizen_id, international_id)
-        if match.present? && match.status == "pending c"
-          match.status == "Matched"
-          match.save
+        if match.present? && match[0].status == "pending c"
+          match[0].status = "Matched"
+          match[0].save
+          match[0]
         elsif !match.present? 
           Match.create(citizen_id: citizen_id, international_id: international_id, status: "pending i")
         end
-    else
+    else  
       citizen_id = matchee.status_id
       international_id = self.status_id
         match = Match.match_exist(citizen_id, international_id)
-        if match.present? && match.status == "pending i"
-          match.status == "Matched"
-          match.save
+        if match.present? && match[0].status == "pending i"
+          match[0].status = "Matched"
+          match[0].save
+          match[0]
         elsif !match.present? 
           Match.create(citizen_id: citizen_id, international_id: international_id, status: "pending c")
         end
-    # (citizen_id: self.status_id, :international_id: )
+    end
+  end
+
+  def matched
+    if self.status == "International"
+      Match.where("international_id = ? AND status= ?", self.status_id, "Matched")
+    else
+      Match.where("citizen_id = ? AND status= ?", self.status_id, "Matched")
     end
   end
 
@@ -89,9 +80,5 @@ class User < ActiveRecord::Base
   # the international gets added to the citizen's likes array
   # we look at the itnerational's likes array to see if there is overlap
   # if there is, a match is created that includes both of them
-
-
-
-   
 
 end

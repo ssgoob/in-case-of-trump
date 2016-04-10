@@ -1,8 +1,9 @@
+require 'factory_girl_rails'
 
-benjamin = User.create(name: "Benjamin", preference: 'F', gender: 'M', status: "International")
-karen = User.create(name: "Karen", preference: 'M', gender: 'F', status: "International")
-tito = User.create(name: "Tito", preference: 'F', gender: 'M', status: "Citizen")
-sally = User.create(name: "Sally", preference: 'M', gender: 'F', status: "Citizen")
+10.times do
+  FactoryGirl.create :citizen
+  FactoryGirl.create :international
+end
 
 # benjamin_international = International.create(user: benjamin)
 # tito_citizen = Citizen.create(user: tito)

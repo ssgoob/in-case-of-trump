@@ -17,6 +17,8 @@
 
 
 class User < ActiveRecord::Base
+  has_many :user_interests
+  has_many :interests, through: :user_interests
 
   # validates :name, :gender, :dob, :status, :preference, presence: true
   # validates :email, uniqueness: true 

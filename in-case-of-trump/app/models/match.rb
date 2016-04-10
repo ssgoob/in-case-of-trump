@@ -15,7 +15,9 @@ class Match < ActiveRecord::Base
   belongs_to :international
   has_one :conversation
 
-  # all users currently in a conversation
+  
+  # all users currently in a conversation #match status 'in_conversation'
+  # on users model match status set to 'Matched' / 'pending c' / 'pending i'
   def self.conversing_users
     citizen_count = Citizen.joins(:matches).where('matches.status = "in_conversation"').group('citizens.id').count 
     international_count = International.joins(:matches).where('matches.status = "in_conversation"').group('internationals.id').count
@@ -32,7 +34,6 @@ class Match < ActiveRecord::Base
   end
 
   def self.success_rate
-    binding.pry
     conversing_users / User.all.count
   end
 

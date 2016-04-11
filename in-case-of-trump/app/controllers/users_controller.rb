@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
+    binding.pry
     if(@user.save)
         if(params[:user][:status]=='Citizen')
           citizen = Citizen.new

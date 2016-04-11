@@ -15,7 +15,9 @@ RSpec.configure do |config|
   # end
 
   config.before(:all) do 
-    FactoryGirl.reload 
+    FactoryGirl.reload
+    4.times { FactoryGirl.create(:citizen) }
+    5.times { FactoryGirl.create(:international) }
   end
 
   config.after(:all) do 

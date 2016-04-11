@@ -1,39 +1,14 @@
 require 'spec_helper'
 
-
 describe User do
-  let!(:hr) {Interest.create(interest_name: 'Horseback Riding')}
-  let!(:hiking) {Interest.create(interest_name: 'Hiking')}
-  let!(:coffee) {Interest.create(interest_name: 'Coffee')}
-  let!(:dancing) {Interest.create(interest_name: 'Dancing')}
-  let!(:partying) {Interest.create(interest_name: 'Partying')}
-  let!(:art) {Interest.create(interest_name: 'Art')}
-  let!(:politics) {Interest.create(interest_name: 'Politics')}
-  let!(:romance) {Interest.create(interest_name: 'Romance')}
-  let!(:fun) {Interest.create(interest_name: 'Fun')}
-  let!(:sports) {Interest.create(interest_name: 'Sports')}
-  let!(:traveling) {Interest.create(interest_name: 'Traveling')}
-  let!(:hop_scotch) {Interest.create(interest_name: 'Hop Scotch')}
-  let!(:food) {Interest.create(interest_name: 'Food')}
-  let!(:cuddling) {Interest.create(interest_name: 'Cuddling')}
-  let!(:being_a_bro) {Interest.create(interest_name: 'Being a Bro')}
-  let!(:exercise) {Interest.create(interest_name: 'Exercise')}
-  let!(:running) {Interest.create(interest_name: 'Running')}
-  let!(:languages) {Interest.create(interest_name: 'Languages')}
-  let!(:movies) {Interest.create(interest_name: 'Movies')}
-  let!(:fishing) {Interest.create(interest_name: 'Fishing')}
-  let!(:biking) {Interest.create(interest_name: 'Biking')}
-  let!(:yoga) {Interest.create(interest_name: 'Yoga')}
-  let!(:family) {Interest.create(interest_name: 'Family')}
-  let!(:animals) {Interest.create(interest_name: 'Animals')}
-  let!(:cooking) {Interest.create(interest_name: 'Cooking')}
-  let!(:smoking) {Interest.create(interest_name: 'Smoking')}
-  let!(:drinking) {Interest.create(interest_name: 'Drinking')}
-  let!(:holding_hands) {Interest.create(interest_name: 'Holding Hands')}
 
-  4.times { FactoryGirl.create(:user_interest) }
-  4.times { FactoryGirl.create(:citizen) }
-  4.times { FactoryGirl.create(:international) }
+  ['Horseback Riding', 'Hiking', 'Coffee', 'Dancing', 'Partying', 'Art', 'Politics', 'Romance', 'Fun', 'Sports', 'Traveling', 'Hop Scotch', 'Food', 'Cuddling', 'Being a Bro', 'Exercise', 'Running', 'Languages', 'Movies', 'Fishing', 'Biking', 'Yoga', 'Family', 'Animals', 'Cooking', 'Smoking', 'Drinking', 'Holding Hands'].each do |interest|
+    Interest.create(interest_name: interest)
+  end
+
+  # 4.times { FactoryGirl.create(:citizen) }
+  # let!(:citizen) { FactoryGirl.create(:citizen) }
+  # let!(:international) { FactoryGirl.create(:international) }
 
   let!(:karen) {User.create(name: "Karen", preference: 'M', gender: 'F',)}
   let!(:tito) {User.create(name: "Tito", preference: 'F', gender: 'M', )}
@@ -45,7 +20,7 @@ describe User do
     it 'can create many users' do 
       expect(User.all.count).to eq(10)
       expect(International.all.count).to eq(5)
-      expect(Citizen.all.count).to eq(5)
+      expect(Citizen.all.count).to eq(4)
     end
   end
 

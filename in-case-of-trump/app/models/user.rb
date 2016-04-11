@@ -16,8 +16,8 @@
 
 class User < ActiveRecord::Base
 
-  validates :name, :gender, :dob, :preference, presence: true
-  validates :email, uniqueness: true 
+  # validates :name, :gender, :dob, :preference, presence: true
+  # validates :email, uniqueness: true 
 
   def status
     (Citizen.find_by user_id: self.id) ? "Citizen" : "International"

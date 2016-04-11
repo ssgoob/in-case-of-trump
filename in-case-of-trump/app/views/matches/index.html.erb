@@ -1,0 +1,13 @@
+<ul>  
+  <% @matches.each do |user| %>   
+  <li>Name: <%= user.status %></li>
+  <li>Gender: <%= user.citizen_id %></li>
+  <li>DOB: <%= user.international_id %></li>
+  <li>Location: <%= user.created_at %></li>
+  <li>Preference: <%= user.updated_at %></li>
+  <li>Interests: <%= user.updated_at %></li>
+  <li>Photos: <%= user.updated_at %></li>
+  <li>Email: <%= user.updated_at %></li>
+  <br>
+  <% end %> 
+</ul>

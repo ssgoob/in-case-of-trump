@@ -2,7 +2,9 @@ class MatchesController < ApplicationController
   
   def index 
     #get matches for current_user 
-    @matches = Matches.all
+    # @matches = Match.all
+    @user = User.find_by(name: "Benjamin")
+    @matches = @user.all_matches
   end
 
   # def new
@@ -12,6 +14,6 @@ class MatchesController < ApplicationController
   # end
 
   def show
-    @match = Match.find(params[:id])
+    # @match = Match.find(params[:id])
   end
 end

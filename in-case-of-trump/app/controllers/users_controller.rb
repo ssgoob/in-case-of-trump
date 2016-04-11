@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params, dob: date_params)
     if(@user.save)
         if (params[:user][:status]=='Citizen')
           citizen = Citizen.new
@@ -40,7 +40,11 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params) ? (redirect_to @user) : (render :edit)
+    if @user.update(user_params) && @user.update(dob: date_params)
+      redirect_to @user
+    else
+      render :edit
+    end  
   end
 
 
@@ -50,5 +54,9 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :password, :password_confirmation, :name, :gender, :dob, :preference, :location, :preference, :interests, :photos, :status)
   end
 
+  def date_params
+    date = Date.new params[:user]["dob(1i)"].to_i, params[:user]["dob(2i)"].to_i, params[:user]["dob(3i)"].to_i
+  end
+  
 
 end

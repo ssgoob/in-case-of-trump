@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   end
   
   def age
-    Time.now.year - self.dob.year
+    ((Time.now - self.dob)/3600/24/365).to_i
   end
 
   def all_matches

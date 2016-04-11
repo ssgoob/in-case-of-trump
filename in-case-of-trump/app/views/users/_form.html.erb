@@ -1,17 +1,32 @@
-<%= f.label :name %>
-<%= f.text_field :name, placeholder: "Enter name" %><br>
+ <% if @user.errors.any? %>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li> <%= msg %> </li>
+      <% end %>
+    </ul>
+  <% end %>
+  
+<%= f.label :email %>
+<%= f.email_field :email, placeholder: "Enter email address" %><br><br>
 
-<%= f.label :dob %>
-<%= f.date_select :dob, start_year: Time.now.year - 100, end_year: Time.now.year %><br>
+<%= f.label :password %>
+<%= f.password_field :password %><br><br>
+
+<%= f.label :password_confirmation %>
+<%= f.password_field :password_confirmation %><br><br>
+
+<%= f.label :name %>
+<%= f.text_field :name, placeholder: "Enter name" %><br><br>
+
+<%= f.label :dob, 'Date of Birth' %>
+<%= f.date_select :dob, start_year: Time.now.year - 100, end_year: Time.now.year-18  %><br><br>
 
 <%= f.label :gender %>
-<%= f.select :gender, ['M', 'F', 'Q', 'T'] %><br>
+<%= f.select :gender, ['M', 'F', 'Q', 'T'] %><br><br>
 
 <%= f.label :status %>
-<%= f.select :status, ['Citizen', 'International'] %><br>
+<%= f.select :status, ['Citizen', 'International'] %><br><br>
 
 <%= f.label :preference %>
-<%= f.select :preference, ['M', 'F', 'Q', 'T'] %><br>
+<%= f.select :preference, ['M', 'F', 'Q', 'T'] %><br><br>
 
-<%= f.label :email %>
-<%= f.select :email, placeholder: "Enter email address" %><br>

@@ -11,9 +11,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    binding.pry
     if(@user.save)
-        if(params[:user][:status]=='Citizen')
+        if (params[:user][:status]=='Citizen')
           citizen = Citizen.new
           citizen.user = @user
           citizen.save
@@ -24,6 +23,7 @@ class UsersController < ApplicationController
           international.save
           #make international and assign this user to international
         end
+      session[:user_id] = @user.id
       redirect_to @user
     else
       render :new
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :gender, :dob, :preference, :location, :preference, :interests, :photos, :status, :email)
+    params.require(:user).permit(:email, :password, :password_confirmation, :name, :gender, :dob, :preference, :location, :preference, :interests, :photos, :status)
   end
 
 

@@ -1,3 +1,5 @@
+<%= notice %>
+
 <ul>
   <li>Name: <%= @user.name %></li>
   <li>Age: <%= @user.age %></li>
@@ -5,7 +7,16 @@
   <li>Status: <%= @user.status %></li>
   <li>Preference: <%= @user.preference %></li>
   <li>Location: <%= @user.location %></li>
-  <li>Interests: <%= @user.interests %></li>
+  <li>Interests:
+    <ul> 
+   <% @user.interests.each do |interest| %>
+    <li><%= interest.interest_name %></li>
+    <% end %>
+    </ul>
+  </li>  
   <li>Photos: <%= @user.photos %></li>
 </ul>
+
+<% if session[:user_id] == @user.id %>
 <%= link_to 'Update Info', edit_user_path %>
+<% end %>

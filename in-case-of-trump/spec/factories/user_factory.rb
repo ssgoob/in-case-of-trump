@@ -27,20 +27,13 @@ FactoryGirl.define do
     preference
     email { Faker::Internet.email }
     photos { Faker::Placeholdit.image }
+    password "password"
   end
 
   factory :user_interest do
     user_id
     interest_id
   end  
-
-  factory :citizen do
-    association :user, factory: :user, status: "Citizen"
-  end
-
-  factory :international do
-    association :user, factory: :user, status: "International"
-  end
 
 end    
 

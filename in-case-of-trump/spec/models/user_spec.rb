@@ -5,22 +5,19 @@ describe User do
   ['Horseback Riding', 'Hiking', 'Coffee', 'Dancing', 'Partying', 'Art', 'Politics', 'Romance', 'Fun', 'Sports', 'Traveling', 'Hop Scotch', 'Food', 'Cuddling', 'Being a Bro', 'Exercise', 'Running', 'Languages', 'Movies', 'Fishing', 'Biking', 'Yoga', 'Family', 'Animals', 'Cooking', 'Smoking', 'Drinking', 'Holding Hands'].each do |interest|
     Interest.create(interest_name: interest)
   end
+    
+    let!(:karen) {User.create(name: "Karen", preference: 'M', gender: 'F', password: 'password', email: 'email@memail.com')}
+    let!(:tito){User.create(name: "Tito", preference: 'F', gender: 'M', password: 'password', email: 'email1@memail.com')}
+    let!(:tito_citizen) {Citizen.create(user_id: 11)}
+    let!(:karen_international) {International.create(user_id: 10)}
+    let!(:match) {Match.create(citizen_id: 5, international_id: 6, status: "pending c")}
 
-  # 4.times { FactoryGirl.create(:citizen) }
-  # let!(:citizen) { FactoryGirl.create(:citizen) }
-  # let!(:international) { FactoryGirl.create(:international) }
-
-  let!(:karen) {User.create(name: "Karen", preference: 'M', gender: 'F',)}
-  let!(:tito) {User.create(name: "Tito", preference: 'F', gender: 'M', )}
-  let!(:tito_citizen) {Citizen.create(user: tito)}
-  let!(:karen_international) {International.create(user: karen)}
-  let!(:tito_karen) {Match.create(citizen_id: tito_citizen.id, international_id: karen_international.id, status: "pending c")}
 
   describe '#create' do
     it 'can create many users' do 
-      expect(User.all.count).to eq(10)
-      expect(International.all.count).to eq(5)
-      expect(Citizen.all.count).to eq(4)
+      expect(User.all.count).to eq(11)
+      expect(International.all.count).to eq(6)
+      expect(Citizen.all.count).to eq(5)
     end
   end
 

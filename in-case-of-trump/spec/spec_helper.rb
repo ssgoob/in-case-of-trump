@@ -14,6 +14,10 @@ RSpec.configure do |config|
   #   load Rails.root + "db/seeds.rb"
   # end
 
+  # config.before(:all) do
+  #   rspec_seed.seed
+  # end
+
   config.before(:all) do 
     FactoryGirl.reload
     4.times { FactoryGirl.create(:citizen) }
@@ -23,4 +27,6 @@ RSpec.configure do |config|
   config.after(:all) do 
     DatabaseCleaner.clean
   end
+
+
 end

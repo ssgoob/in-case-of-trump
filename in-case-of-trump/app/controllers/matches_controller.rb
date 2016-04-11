@@ -1,17 +1,17 @@
 class MatchesController < ApplicationController
   
   def index 
-    #get matches for current_user 
-    @matches = Matches.all
+    @matches = current_user.all_matches
   end
 
-  # def new
-  # end
+  def new
+  end
 
-  # def create
-  # end
+  def create
+  end
 
   def show
+    binding
     @match = Match.find(params[:id])
   end
 end

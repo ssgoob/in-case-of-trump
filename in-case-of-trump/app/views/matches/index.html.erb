@@ -1,0 +1,17 @@
+<% @matches.each do |match| %>
+
+  <li>Name: <%= match.name %></li>
+  <li>Gender: <%= match.gender %></li>
+  <li>Status: <%= match.status %></li>
+  <li>Preference: <%= match.preference %></li>
+  <li>Location: <%= match.location %></li>
+  <li>Interests:
+    <ul> 
+     <% match.interests.each do |interest| %>
+        <li><%= interest.interest_name %></li>
+      <% end %>
+    </ul>
+  </li> 
+  <li>Photos: <%= match.photos %></li>
+  <li><%=link_to 'my profile', user_path(match.id) %></li><br>
+<% end %>

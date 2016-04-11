@@ -1,7 +1,13 @@
 class User < ActiveRecord::Base
+  has_secure_password 
+  
   has_many :user_interests
   has_many :interests, through: :user_interests
 
+  validates :name, presence: true
+  validates :email, presence: true
+  validates_uniqueness_of :email
+  
   # validates :name, :gender, :dob, :status, :preference, presence: true
   # validates :email, uniqueness: true 
 
@@ -39,7 +45,6 @@ class User < ActiveRecord::Base
     else
       match = International.joins(:user).where('users.preference = ? AND users.gender = ?', self.gender, self.preference)
     end
-    binding.pry
     match.map {|match| match.user}  
   end  
 
@@ -51,6 +56,7 @@ class User < ActiveRecord::Base
         if match.present? && match[0].status == "pending c"
           match[0].status = "Matched"
           match[0].save
+          Conversation.create(match_id: match[0].id)
           match[0]
         elsif !match.present? 
           Match.create(citizen_id: citizen_id, international_id: international_id, status: "pending i")
@@ -62,6 +68,7 @@ class User < ActiveRecord::Base
         if match.present? && match[0].status == "pending i"
           match[0].status = "Matched"
           match[0].save
+          Conversation.create(match_id: match[0].id)
           match[0]
         elsif !match.present? 
           Match.create(citizen_id: citizen_id, international_id: international_id, status: "pending c")

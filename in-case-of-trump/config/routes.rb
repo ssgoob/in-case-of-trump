@@ -5,6 +5,13 @@ Rails.application.routes.draw do
   resources :internationals
   resources :citizens
   resources :users
+  resources :sessions
+
+  root to: 'pages#home' 
+
+  get "signup" => "users#new", as: "signup" 
+  get "login" => "sessions#new", as: "login"
+  get "logout" => "sessions#destroy", as: "logout"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

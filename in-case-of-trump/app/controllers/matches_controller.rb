@@ -11,7 +11,7 @@ class MatchesController < ApplicationController
   end
 
   def show
-    # binding.pry
+    binding
     @match = Match.find(params[:id])
   end
 end

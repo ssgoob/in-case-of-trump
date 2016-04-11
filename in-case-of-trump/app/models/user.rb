@@ -30,7 +30,6 @@ class User < ActiveRecord::Base
   end
   
   def age
-    binding.pry
     Time.now.year - self.dob.year
   end
 
@@ -40,6 +39,7 @@ class User < ActiveRecord::Base
     else
       match = International.joins(:user).where('users.preference = ? AND users.gender = ?', self.gender, self.preference)
     end
+    binding.pry
     match.map {|match| match.user}  
   end  
 

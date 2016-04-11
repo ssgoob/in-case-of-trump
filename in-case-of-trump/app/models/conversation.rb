@@ -14,7 +14,8 @@ class Conversation < ActiveRecord::Base
 
   # if Match status is 'success', create conversation using match_id
   def create_conversation
-
+    binding.pry
+    Match.where(status == "Matched")
   end
 
 end

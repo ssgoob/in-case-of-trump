@@ -14,6 +14,10 @@ RSpec.configure do |config|
   #   load Rails.root + "db/seeds.rb"
   # end
 
+  config.before(:all) do 
+    FactoryGirl.reload 
+  end
+
   config.after(:all) do 
     DatabaseCleaner.clean
   end

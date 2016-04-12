@@ -36,9 +36,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-        binding.pry
-    (render @user if @user == current_user)
-    if !current_user.all_matches.include?(@user)
+    unless(current_user == @user || current_user.all_matches.include?(@user))
       redirect_to matches_path
     end
   end

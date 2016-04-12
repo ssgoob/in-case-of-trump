@@ -23,7 +23,8 @@ FactoryGirl.define do
     gender
     dob { Faker::Date.between(100.years.ago, 18.years.ago) }
     preference
-    sequence(:email) { |n| "test#{n}@email.com" }
+    email { Faker::Internet.email }
+    # sequence(:email) { |n| "test#{n}@email.com" }
     photos { Faker::Placeholdit.image }
     password "password"
   end

@@ -5,7 +5,7 @@ class ConversationsController < ApplicationController
     unless @conversation.has_access?(current_user)
       redirect_to matches_path
     end
-    @message = @conversation.messages.build
+    @message = Message.new
   end
 
 end

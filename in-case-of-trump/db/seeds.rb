@@ -10,6 +10,12 @@ require 'factory_girl_rails'
   FactoryGirl.create :international
 end
 
+['Horseback Riding', 'Hiking', 'Coffee', 'Dancing', 'Partying', 'Art', 'Politics', 'Romance', 'Fun', 'Sports', 'Traveling', 'Hop Scotch', 'Food', 'Cuddling', 'Being a Bro', 'Exercise', 'Running', 'Languages', 'Movies', 'Fishing', 'Biking', 'Yoga', 'Family', 'Animals', 'Cooking', 'Smoking', 'Drinking', 'Holding Hands'].each do |interest|
+  Interest.create(interest_name: interest)
+end
+
+
+
 # benjamin_international = International.create(user: benjamin)
 # tito_citizen = Citizen.create(user: tito)
 # karen_international = International.create(user: karen)

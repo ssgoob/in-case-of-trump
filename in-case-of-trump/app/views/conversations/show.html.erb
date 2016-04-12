@@ -6,8 +6,9 @@
 <%= f.submit %>
 <% end %>
 
-
-<% @conversation.messages.each do |message| %>
-<%=message.user_id %>
-<%=message.content %>
-<%end%>
+<ul>
+  <% @conversation.messages.reverse.each do |message| %>
+    <li><%= User.find(message.user_id).name %>: 
+    <%= message.content %></li>
+  <%end%>
+</ul>

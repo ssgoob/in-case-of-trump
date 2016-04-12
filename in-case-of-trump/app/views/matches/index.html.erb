@@ -13,5 +13,5 @@
     </ul>
   </li> 
   <li>Photos: <%= match.photos %></li>
-  <li><%=link_to 'my profile', user_path(match.id) %></li><br>
+  <li><%=link_to match.name + "'s profile", user_path(match.id) %></li><br>
 <% end %>

@@ -1,0 +1,7 @@
+<%= current_user.name %>
+Select your interests:
+<%= form_for current_user do |f| %>
+  <%= f.collection_check_boxes(:interest_ids, Interest.all, :id, :interest_name) %>
+  <br>
+  <%= f.submit "Add Interests" %>
+<% end %>

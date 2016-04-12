@@ -55,6 +55,16 @@ class UsersController < ApplicationController
     end  
   end
 
+  def add_user_interests
+    current_user.interests.clear
+    interests_array = params[:user][:interest_ids]
+    interests_array.pop
+    interests_array.each do |interest|
+      new_interest = Interest.find(interest)
+      current_user.interests << new_interest
+    end
+    redirect_to current_user
+  end
 
   private
 
@@ -65,6 +75,7 @@ class UsersController < ApplicationController
   def date_params
     date = Date.new params[:user]["dob(1i)"].to_i, params[:user]["dob(2i)"].to_i, params[:user]["dob(3i)"].to_i
   end
+
   
 
 end

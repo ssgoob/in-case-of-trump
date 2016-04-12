@@ -5,7 +5,6 @@ class InterestsController < ApplicationController
   end
 
   def create
-    
   end
 
 

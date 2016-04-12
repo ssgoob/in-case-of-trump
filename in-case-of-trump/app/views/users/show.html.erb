@@ -20,7 +20,8 @@
 <%= link_to 'See My Matches', matches_path %><br><br>
 
 <% if session[:user_id] == @user.id %>
-  <%= link_to 'Update Info', edit_user_path %>
+  <%= link_to 'Update Info', edit_user_path %><br>
+  <%= link_to 'Add Interests', new_interest_path %>
 <% else %>
   <% match = Match.match_exist(current_user, @user) %>
   <% if match.empty? || match[0].display_option(current_user.status) == 'like'%>

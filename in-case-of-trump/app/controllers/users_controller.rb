@@ -30,8 +30,17 @@ class UsersController < ApplicationController
     end
   end
 
+# 1. If @user == current_user, show my page
+# 2. If @user is in current_users's matches, let me match see their page
+# 3. If @suer is not in current_user's matches, keep me at index
+
   def show
     @user = User.find(params[:id])
+        binding.pry
+    (render @user if @user == current_user)
+    if !current_user.all_matches.include?(@user)
+      redirect_to matches_path
+    end
   end
 
   def edit

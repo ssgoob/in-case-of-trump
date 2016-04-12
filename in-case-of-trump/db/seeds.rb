@@ -5,7 +5,7 @@ require 'factory_girl_rails'
 # tito = User.create(name: "Tito", preference: 'F', gender: 'M', status: "Citizen")
 # sally = User.create(name: "Sally", preference: 'M', gender: 'F', status: "Citizen")
 
-50.times do
+200.times do
   FactoryGirl.create :citizen
   FactoryGirl.create :international
 end

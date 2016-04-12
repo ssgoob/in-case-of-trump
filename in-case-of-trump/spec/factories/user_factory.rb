@@ -18,14 +18,12 @@ FactoryGirl.define do
     (1 + Random.rand(4))
   end  
 
- sequence(:email) { |n| "test#{n}@email.com" }
-
   factory :user do 
     name { Faker::Name.name }
     gender
     dob { Faker::Date.between(100.years.ago, 18.years.ago) }
     preference
-    email  
+    sequence(:email) { |n| "test#{n}@email.com" }
     photos { Faker::Placeholdit.image }
     password "password"
   end

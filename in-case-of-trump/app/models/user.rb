@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
     end
   end
   
-  def age3
+  def age
     ((Time.now - self.dob)/3600/24/365).to_i
   end
 

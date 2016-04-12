@@ -31,6 +31,7 @@ class Match < ActiveRecord::Base
   # end
 
   def self.match_exist(first_user, second_user)
+    binding.pry
     if(first_user.status == 'Citizen')
       Match.where("citizen_id = ? AND international_id = ?", first_user.status_id, second_user.status_id)
     else

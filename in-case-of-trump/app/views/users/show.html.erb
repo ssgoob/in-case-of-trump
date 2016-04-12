@@ -24,7 +24,7 @@
 <% else %>
   <% match = Match.match_exist(current_user, @user) %>
   <% if match.empty? || match.display_option(current_user) == 'like'%>
-    <%= link_to 'Like', '#' %>
+    <%= link_to 'Like', matches_path(id: @user.id), method: :post%>
   <% elsif match.display_option(current_user) == 'disabled' %>
     <%= link_to 'Liked', '#' %>
   <% else %>

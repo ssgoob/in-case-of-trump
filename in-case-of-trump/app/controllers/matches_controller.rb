@@ -10,7 +10,7 @@ class MatchesController < ApplicationController
   def create
     @user = User.find(params[:id])
     current_user.make_a_match(@user)
-    redirect_to root_path
+    redirect_to @user
   end
 
   def show

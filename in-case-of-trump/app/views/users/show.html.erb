@@ -23,12 +23,12 @@
   <%= link_to 'Update Info', edit_user_path %>
 <% else %>
   <% match = Match.match_exist(current_user, @user) %>
-  <% if match.empty? || match.display_option(current_user) == 'like'%>
+  <% if match.empty? || match[0].display_option(current_user.status) == 'like'%>
     <%= link_to 'Like', matches_path(id: @user.id), method: :post%>
-  <% elsif match.display_option(current_user) == 'disabled' %>
+  <% elsif match[0].display_option(current_user.status) == 'disabled' %>
     <%= link_to 'Liked', '#' %>
   <% else %>
-    <%= link_to 'Chat', match.conversation %>
+    <%= link_to 'Chat', match[0].conversation %>
   <% end %>
 <% end %>
 

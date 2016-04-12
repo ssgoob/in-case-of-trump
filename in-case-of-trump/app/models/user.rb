@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
     if self.status == "Citizen"
       citizen_id = self.status_id
       international_id = matchee.status_id
-        match = Match.match_exist(citizen_id, international_id)
+        match = Match.match_exist(self, matchee)
         if match.present? && match[0].status == "pending c"
           match[0].status = "Matched"
           match[0].save
@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
     else  
       citizen_id = matchee.status_id
       international_id = self.status_id
-        match = Match.match_exist(citizen_id, international_id)
+        match = Match.match_exist(self, matchee)
         if match.present? && match[0].status == "pending i"
           match[0].status = "Matched"
           match[0].save

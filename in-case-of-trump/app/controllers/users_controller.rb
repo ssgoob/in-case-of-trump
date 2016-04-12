@@ -36,9 +36,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    unless(current_user == @user || current_user.all_matches.include?(@user))
-      redirect_to matches_path
-    end
+    redirect_to matches_path unless (current_user.has_access?(@user))
+    # unless(current_user == @user || current_user.all_matches.include?(@user))
+    #   redirect_to matches_path
+    # end
   end
 
   def edit

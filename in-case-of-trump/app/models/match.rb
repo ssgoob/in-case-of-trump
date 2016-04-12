@@ -26,8 +26,26 @@ class Match < ActiveRecord::Base
     1 - success_rate
   end
 
-  def self.match_exist(citizen_id, international_id)
-    Match.where("citizen_id = ? AND international_id = ?", citizen_id, international_id)
+  # def self.match_exist(citizen_id, international_id)
+  #   Match.where("citizen_id = ? AND international_id = ?", citizen_id, international_id)
+  # end
+
+  def self.match_exist(first_user, second_user)
+    if(first_user.status == 'Citizen')
+      Match.where("citizen_id = ? AND international_id = ?", first_user.status_id, second_user.status_id)
+    else
+      Match.where("citizen_id = ? AND international_id = ?", second_user.status_id, first_user.status_id)
+    end
+  end
+
+  def display_option(user_status)
+    if(self.status.chars.last == user_status.downcase.chars.first) #status is pending and waiting on you
+      return 'like'
+    elsif(self.status.start_with?('pending')) #waiting on other user
+      return 'disabled'
+    else #status is matched
+      return 'conversation'
+    end
   end
 
 end

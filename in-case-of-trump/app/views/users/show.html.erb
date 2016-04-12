@@ -21,5 +21,14 @@
 
 <% if session[:user_id] == @user.id %>
   <%= link_to 'Update Info', edit_user_path %>
+<% else %>
+  <% match = Match.match_exist(current_user, @user) %>
+  <% if match.empty? || match.display_option(current_user) == 'like'%>
+    <%= link_to 'Like', '#' %>
+  <% elsif match.display_option(current_user) == 'disabled' %>
+    <%= link_to 'Liked', '#' %>
+  <% else %>
+    <%= link_to 'Chat', match.conversation %>
+  <% end %>
 <% end %>
 

@@ -33,11 +33,11 @@ describe User do
 
   describe '#all possible matches' do
     it 'returns all matches if citizen by status and matched preference' do
-      expect(tito.all_matches).to include(karen)
+      expect(tito.potential_matches).to include(karen)
     end
 
     it 'returns all matches if international by status and matched preference' do
-      expect(karen.all_matches).to include(tito)
+      expect(karen.potential_matches).to include(tito)
     end
   end
 

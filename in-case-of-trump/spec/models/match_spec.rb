@@ -67,5 +67,24 @@ describe Match do
     end
   end
 
+  #   # if(Match.match_exist(current_user, @user).present?)
+  #   #   # check match status 
+  #   #   # if pending on you, display like button - if clicked return back to match
+  #   #   # if pending on other, greyed out display like button
+  #   #   # if match status matched - show link to conversations
+  #   # else # no match
+  #   #   # display like button - if clicked return back to match
+  #   # end
+  # describe '.match_to_html' do
+  #   it 'if pending citizen, benjamin cannot like again' do
+  #     context 'current_user is benjamin' do
+  #       benjamin_sally.status = 'pending c'
+  #       expect(benjamin_sally.match_to_html(benjamin.status)).to eq('<button type="button" disabled>Like!</button>')
+
+  #       binding.pry
+  #     end
+  #   end
+  end
+
 end
   

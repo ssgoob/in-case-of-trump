@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
     ((Time.now - self.dob)/3600/24/365).to_i
   end
 
-  def all_matches
+  def potential_matches
     if self.status == 'International'
       match = Citizen.joins(:user).where('users.preference = ? AND users.gender = ?', self.gender, self.preference)
     else
@@ -82,6 +82,10 @@ class User < ActiveRecord::Base
     else
       Match.where("citizen_id = ? AND status= ?", self.status_id, "Matched")
     end
+  end
+
+  def has_access?(user)
+    (self == user || self.potential_matches.include?(user)) ? true : false
   end
 
   # a citizen likes an international

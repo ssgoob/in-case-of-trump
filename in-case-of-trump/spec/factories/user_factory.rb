@@ -11,7 +11,7 @@ FactoryGirl.define do
   # end
 
   sequence(:user_id) do |n|
-    (1 + Random.rand(10))
+    (1 + Random.rand(200))
   end  
 
   sequence(:interest_id) do |n|

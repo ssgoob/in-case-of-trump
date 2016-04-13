@@ -59,15 +59,11 @@ class UsersController < ApplicationController
     current_user.interests.clear
     interest_ids = ui_params.keys
     ratings = ui_params.values
-    interest_ids.each do |interest_id|
-      interest = Interest.find(interest_id)
-      current_user.interests << interest
-      ratings.each do |rating|
-        binding.pry
-        UserInterest.create(user_id: current_user.id, interest_id: interest, rating: rating.to_i)
-      end
+    interest_ids.each_with_index do |interest_id, index|
+      user_interest = UserInterest.create(user_id: current_user.id, interest_id: interest_id, rating: ratings[index].to_i)
     end
-   end
+    redirect_to current_user
+  end
 
     # interests_array = params[:user][:interest_ids]
     # interests_array.pop

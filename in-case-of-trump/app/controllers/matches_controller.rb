@@ -1,7 +1,7 @@
 class MatchesController < ApplicationController
   
   def index 
-    @matches = current_user.potential_matches
+    @matches = current_user.order_matches_by_quality
   end
 
   def new

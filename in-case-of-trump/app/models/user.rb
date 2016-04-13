@@ -56,6 +56,33 @@ class User < ActiveRecord::Base
     match.map {|match| match.user}  
   end  
 
+  def order_matches_by_quality
+    users = self.potential_matches
+
+
+    matchees = users.map do |matchee|
+      [matchee, self.calculate_quality(matchee)]
+    end
+    sorted_matchees = matchees.sort_by do |matchee_info|
+      matchee_info[1]*-1
+    end
+    sorted_matchees
+  end
+
+  def calculate_quality(user)
+    my_interests = UserInterest.where(user_id: self.id)
+    matchee_interests = UserInterest.where(user_id: user.id)
+    match_score = 0;
+    Interest.all.each do |interest|
+      my_rating = my_interests.where(interest_id: interest.id).pluck(:rating)[0]
+      my_rating ||= 3
+      matchee_rating = matchee_interests.where(interest_id: interest.id).pluck(:rating)[0]
+      matchee_rating ||= 3
+      match_score += [my_rating, matchee_rating].min - [my_rating, matchee_rating].max
+    end
+    match_score
+  end
+
   def make_a_match(matchee)
     if self.status == "Citizen"
       citizen_id = self.status_id

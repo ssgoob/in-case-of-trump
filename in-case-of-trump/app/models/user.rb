@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   geocoded_by :location
   after_validation :geocode, if: ->(obj){ obj.location.present? and obj.location_changed? }
 
-  # reverse_geocoded_by :latitude, :longitude, :address => :location
-  # after_validation :reverse_geocode
+  reverse_geocoded_by :latitude, :longitude, :address => :location
+  after_validation :reverse_geocode
 
   has_many :user_interests
   has_many :interests, through: :user_interests

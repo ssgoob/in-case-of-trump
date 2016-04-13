@@ -24,8 +24,8 @@ FactoryGirl.define do
     name { Faker::Name.name }
     gender
     dob { Faker::Date.between(100.years.ago, 18.years.ago) }
-    latitude { Faker::Address.latitude }
-    longitude { Faker::Address.longitude }
+    # latitude { Faker::Address.latitude }
+    # longitude { Faker::Address.longitude }
     preference
     email
     photos { Faker::Placeholdit.image }

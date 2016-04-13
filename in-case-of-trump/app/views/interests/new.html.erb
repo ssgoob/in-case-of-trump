@@ -1,6 +1,6 @@
 <%= current_user.name %>
 Tell us how you feel about these interests:
-<%= form_tag(add_interests_path) do %>
+<%= form_tag(add_interests_path, method: 'POST') do %>
   <% @interests.each do |interest| %>
     <%= label_tag interest.id, interest.interest_name %><br>
     <%= label_tag '1' %> <%= radio_button_tag interest.id, 1 %>

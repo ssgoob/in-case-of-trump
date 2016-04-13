@@ -57,15 +57,26 @@ class UsersController < ApplicationController
 
   def add_user_interests
     current_user.interests.clear
-    binding.pry
-    interests_array = params[:user][:interest_ids]
-    interests_array.pop
-    interests_array.each do |interest|
-      new_interest = Interest.find(interest)
-      current_user.interests << new_interest
+    interest_ids = ui_params.keys
+    ratings = ui_params.values
+    interest_ids.each do |interest_id|
+      interest = Interest.find(interest_id)
+      current_user.interests << interest
+      ratings.each do |rating|
+        binding.pry
+        UserInterest.create(user_id: current_user.id, interest_id: interest, rating: rating.to_i)
+      end
     end
-    redirect_to current_user
-  end
+   end
+
+    # interests_array = params[:user][:interest_ids]
+    # interests_array.pop
+    # interests_array.each do |interest|
+    #   new_interest = Interest.find(interest)
+    #   current_user.interests << new_interest
+    # end
+    # redirect_to current_user
+ 
 
   private
 
@@ -76,6 +87,10 @@ class UsersController < ApplicationController
   def date_params
     date = Date.new params[:user]["dob(1i)"].to_i, params[:user]["dob(2i)"].to_i, params[:user]["dob(3i)"].to_i
   end
+
+  def ui_params
+    params.permit("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28")
+  end  
 
   
 

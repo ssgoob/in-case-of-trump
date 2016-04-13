@@ -29,7 +29,20 @@
   <% elsif match[0].display_option(current_user.status) == 'disabled' %>
     <%= link_to 'Liked', '#' %>
   <% else %>
-    <%= link_to 'Chat', match[0].conversation %>
+    <%= link_to 'Chat', match[0].conversation %><br><br>
+    Fun Restaurants within <% @radius %> meters of Your Match<br><br>
+    <% @recs.each do |rec| %>
+    
+      <% if rec['name'] %>
+      Name:<%= rec['name'] %><br><br>
+            <% end %>
+      <% if rec['rating'] %>
+      Rating:<%= rec['rating'] %><br><br>
+        <% end %>
+      <% if rec['price'] %>
+      Price:<%= rec['price'] %><br><br>
+        <% end %>      
+    <% end %>
   <% end %>
 <% end %>
 

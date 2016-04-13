@@ -36,6 +36,14 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    if Match.match_exist(@user, current_user)
+      @radius = 500
+      @recs = LocationClient.new(@user.latitude, @user.longitude, @radius).create_recommendations
+      while @recs.empty? 
+        @radius *= 2
+        @recs = LocationClient.new(@user.latitude, @user.longitude, @radius).create_recommendations
+      end
+    end
     redirect_to matches_path unless (current_user.has_access?(@user))
     # unless(current_user == @user || current_user.all_matches.include?(@user))
     #   redirect_to matches_path

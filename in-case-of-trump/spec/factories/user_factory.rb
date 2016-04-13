@@ -20,8 +20,6 @@ FactoryGirl.define do
 
   sequence(:email) { |n| "test#{n}@email.com" }  
 
-  sequence(:latitude) { |n|   }
-
   factory :user do 
     name { Faker::Name.name }
     gender

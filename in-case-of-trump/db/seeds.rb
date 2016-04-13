@@ -5,9 +5,12 @@ require 'factory_girl_rails'
 # tito = User.create(name: "Tito", preference: 'F', gender: 'M', status: "Citizen")
 # sally = User.create(name: "Sally", preference: 'M', gender: 'F', status: "Citizen")
 
-5.times do
-  FactoryGirl.create :citizen
-  FactoryGirl.create :international
+20.times do
+  5.times do
+    FactoryGirl.create :citizen
+    FactoryGirl.create :international
+  end
+  sleep(2)
 end
 
 ['Horseback Riding', 'Hiking', 'Coffee', 'Dancing', 'Partying', 'Art', 'Politics', 'Romance', 'Fun', 'Sports', 'Traveling', 'Hop Scotch', 'Food', 'Cuddling', 'Being a Bro', 'Exercise', 'Running', 'Languages', 'Movies', 'Fishing', 'Biking', 'Yoga', 'Family', 'Animals', 'Cooking', 'Smoking', 'Drinking', 'Holding Hands'].each do |interest|

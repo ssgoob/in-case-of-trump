@@ -57,6 +57,7 @@ class UsersController < ApplicationController
 
   def add_user_interests
     current_user.interests.clear
+    binding.pry
     interests_array = params[:user][:interest_ids]
     interests_array.pop
     interests_array.each do |interest|

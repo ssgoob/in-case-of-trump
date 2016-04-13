@@ -1,7 +1,13 @@
 <%= current_user.name %>
-Select your interests:
-<%= form_for current_user, :url => add_interests_path do |f| %>
-  <%= f.collection_check_boxes(:interest_ids, Interest.all, :id, :interest_name) %>
-  <br>
-  <%= f.submit "Add Interests" %>
+Tell us how you feel about these interests:
+<%= form_tag(add_interests_path) do %>
+  <% @interests.each do |interest| %>
+    <%= label_tag interest.id, interest.interest_name %><br>
+    <%= label_tag '1' %> <%= radio_button_tag interest.id, 1 %>
+    <%= label_tag '2' %><%= radio_button_tag interest.id, 2 %>
+    <%= label_tag '3' %><%= radio_button_tag interest.id, 3 %>
+    <%= label_tag '4' %><%= radio_button_tag interest.id, 4 %>
+    <%= label_tag '5' %><%= radio_button_tag interest.id, 5 %><br>
+  <% end %>
+  <%= submit_tag 'Set Interests' %>
 <% end %>

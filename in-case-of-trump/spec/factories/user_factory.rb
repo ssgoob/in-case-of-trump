@@ -11,21 +11,30 @@ FactoryGirl.define do
   # end
 
   sequence(:user_id) do |n|
-    (1 + Random.rand(4))
+    (1 + Random.rand(10))
   end  
 
   sequence(:interest_id) do |n|
-    (1 + Random.rand(4))
+    (1 + Random.rand(28))
+  end  
+
+  sequence(:rating) do |n|
+    (1 + Random.rand(5))
   end  
 
   sequence(:email) { |n| "test#{n}@email.com" }  
 
+  sequence(:latitude) do |n|
+    # if(n < 50)
+  end
+
+  sequence(:longitude) do |n|
+    # if(n < 50)
+  end
   factory :user do 
     name { Faker::Name.name }
     gender
     dob { Faker::Date.between(100.years.ago, 18.years.ago) }
-    latitude { Faker::Number.between(34.0, 42) }
-    longitude { Faker::Number.between(-117, -81.4) }
     preference
     email
     photos { Faker::Placeholdit.image }
@@ -35,6 +44,7 @@ FactoryGirl.define do
   factory :user_interest do
     user_id
     interest_id
+    rating
   end  
 
 end    

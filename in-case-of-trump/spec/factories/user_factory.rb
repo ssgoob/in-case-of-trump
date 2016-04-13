@@ -25,15 +25,25 @@ FactoryGirl.define do
   sequence(:email) { |n| "test#{n}@email.com" }  
 
   sequence(:latitude) do |n|
-    # if(n < 50)
+    if(n < 100)
+      Faker::Number.between(34.0, 42.0)
+    else
+      Faker::Number.between(22.0, 49.0)
+    end
   end
 
   sequence(:longitude) do |n|
-    # if(n < 50)
+    if(n < 100)
+      Faker::Number.between(-117.0, -81.4)
+    else
+      Faker::Number.between(0.0, 116.5)
+    end
   end
   factory :user do 
     name { Faker::Name.name }
     gender
+    latitude
+    longitude
     dob { Faker::Date.between(100.years.ago, 18.years.ago) }
     preference
     email

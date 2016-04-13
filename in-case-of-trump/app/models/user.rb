@@ -1,6 +1,11 @@
 class User < ActiveRecord::Base
   has_secure_password 
-  
+  geocoded_by :location
+  after_validation :geocode, if: ->(obj){ obj.location.present? and obj.location_changed? }
+
+  # reverse_geocoded_by :latitude, :longitude, :address => :location
+  # after_validation :reverse_geocode
+
   has_many :user_interests
   has_many :interests, through: :user_interests
 
@@ -10,6 +15,7 @@ class User < ActiveRecord::Base
   
   # validates :name, :gender, :dob, :status, :preference, presence: true
   # validates :email, uniqueness: true 
+
 
   def status
     (Citizen.find_by user_id: self.id) ? "Citizen" : "International"

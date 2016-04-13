@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160411163402) do
+ActiveRecord::Schema.define(version: 20160413012005) do
 
   create_table "citizens", force: :cascade do |t|
     t.integer  "user_id"
@@ -69,6 +69,8 @@ ActiveRecord::Schema.define(version: 20160411163402) do
     t.string   "status"
     t.string   "password_digest"
     t.string   "password_confirmation"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
 end

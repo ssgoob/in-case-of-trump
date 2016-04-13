@@ -1,9 +1,11 @@
 class User < ActiveRecord::Base
   has_secure_password 
+  # extend Geocoder::Model::ActiveRecord
+
   geocoded_by :location
   after_validation :geocode, if: ->(obj){ obj.location.present? and obj.location_changed? }
 
-  reverse_geocoded_by :latitude, :longitude, :address => :location
+  reverse_geocoded_by  :latitude, :longitude, :address => :location
   after_validation :reverse_geocode
 
   has_many :user_interests

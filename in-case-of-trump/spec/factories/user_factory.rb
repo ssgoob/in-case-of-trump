@@ -20,12 +20,14 @@ FactoryGirl.define do
 
   sequence(:email) { |n| "test#{n}@email.com" }  
 
+  sequence(:latitude) { |n|   }
+
   factory :user do 
     name { Faker::Name.name }
     gender
     dob { Faker::Date.between(100.years.ago, 18.years.ago) }
-    # latitude { Faker::Address.latitude }
-    # longitude { Faker::Address.longitude }
+    latitude { Faker::Number.between(34.0, 42) }
+    longitude { Faker::Number.between(-117, -81.4) }
     preference
     email
     photos { Faker::Placeholdit.image }

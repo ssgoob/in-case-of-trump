@@ -1,7 +1,7 @@
-app = {
-}
+// app = {
+// }
 
-$(document).ready(function(){
+// $(document).ready(function(){
 
-  app.match.controller.init();
-});
+//   app.match.controller.init();
+// });

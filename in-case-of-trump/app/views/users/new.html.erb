@@ -1,5 +1,6 @@
-<%= form_for @user do |f| %>
-  <%= render partial: 'form', locals: {f: f} %>
-  <%= f.submit %>
-<% end %>
-
+<div class="jumbotron">
+  <%= form_for @user do |f| %>
+    <%= render partial: 'form', locals: {f: f} %>
+    <%= f.submit 'Sign Up', class: "btn btn-primary"%>
+  <% end %>
+</div>

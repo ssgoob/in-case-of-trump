@@ -25,14 +25,16 @@
           <li><a href=<%= edit_user_path %>>Update Info</a></li>
           <li><a href=<%= new_interest_path %>>Add Interests</a></li>
       <% else %>
-        <% match = Match.match_exist(current_user, @user) %>
-        <% if match.empty? || match[0].display_option(current_user.status) == 'like'%>
-          <li><%= link_to 'Like', matches_path(id: @user.id), method: :post%></li>
-        <% elsif match[0].display_option(current_user.status) == 'disabled' %>
-          <li><%= link_to 'Liked', '#' %></li>
-        <% else %>
-          <li><%= link_to 'Chat', match[0].conversation %></li>
-        <% end %>
+        <li class="like_box">
+          <% match = Match.match_exist(current_user, @user) %>
+          <% if match.empty? || match[0].display_option(current_user.status) == 'like'%>
+            <li><%= link_to 'Like', matches_path(id: @user.id), method: :post%></li>
+          <% elsif match[0].display_option(current_user.status) == 'disabled' %>
+            <li><%= link_to 'Liked', '#' %></li>
+          <% else %>
+            <li><%= link_to 'Chat', match[0].conversation %></li>
+          <% end %>
+        </li>
       <% end %>
     </ul>
   </div>

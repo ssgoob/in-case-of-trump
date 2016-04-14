@@ -1,5 +1,6 @@
+<div class='jumbotron'>
 <%= current_user.name %>
-Tell us how you feel about these interests:
+Rate Your Interest for the Following Activities:
 <%= form_tag(add_interests_path, method: 'POST') do %>
   <% @interests.each do |interest| %>
     <%= label_tag interest.id, interest.interest_name %><br>
@@ -9,5 +10,6 @@ Tell us how you feel about these interests:
     <%= label_tag '4' %><%= radio_button_tag interest.id, 4 %>
     <%= label_tag '5' %><%= radio_button_tag interest.id, 5 %><br>
   <% end %>
-  <%= submit_tag 'Set Interests' %>
+  <%= submit_tag 'Set Interests', class: 'btn btn-primary' %>
 <% end %>
+</div>

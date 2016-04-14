@@ -6,30 +6,30 @@
     </ul>
   <% end %>
   
-<%= f.label :email %>
-<%= f.email_field :email, placeholder: "Enter email address" %><br><br>
+<%= f.label :email %><br>
+<%= f.email_field :email%><br>
 
-<%= f.label :password %>
-<%= f.password_field :password %><br><br>
+<%= f.label :password %><br>
+<%= f.password_field :password %><br>
 
-<%= f.label :password_confirmation %>
-<%= f.password_field :password_confirmation %><br><br>
+<%= f.label :password_confirmation %><br>
+<%= f.password_field :password_confirmation %><br>
 
-<%= f.label :name %>
-<%= f.text_field :name, placeholder: "Enter name" %><br><br>
+<%= f.label :name %><br>
+<%= f.text_field :name%><br>
 
-<%= f.label :dob, 'Date of Birth' %>
-<%= f.date_select :dob, start_year: Time.now.year - 100, end_year: Time.now.year-18  %><br><br>
+<%= f.label :dob, 'Date of Birth' %><br>
+<%= f.date_select :dob, start_year: Time.now.year - 100, end_year: Time.now.year-18  %><br>
 
-<%= f.label :gender %>
-<%= f.select :gender, ['M', 'F', 'Q', 'T'] %><br><br>
+<%= f.label :gender %><br>
+<%= f.select :gender, ['M', 'F', 'Q', 'T'] %><br>
 
-<%= f.label :location %>
-<%= f.text_field :location, placeholder: "Enter name" %><br><br>
+<%= f.label :location %><br>
+<%= f.text_field :location%><br>
 
-<%= f.label :status %>
-<%= f.select :status, ['Citizen', 'International'] %><br><br>
+<%= f.label :status %><br>
+<%= f.select :status, ['Citizen', 'International'] %><br>
 
-<%= f.label :preference %>
+<%= f.label :preference %><br>
 <%= f.select :preference, ['M', 'F', 'Q', 'T'] %><br><br>
 

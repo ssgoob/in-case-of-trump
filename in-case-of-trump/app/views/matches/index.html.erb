@@ -1,12 +1,16 @@
-<% @matches.each do |match| %>
+<div class="jumbotron vertical-center">
+  
+  <% @matches.each do |match| %>
+    <div class="well">
+      <h3><%= match[0].name %></h3>
+      <li>Compatibility Rating: <%= (100 + match[1]*0.892).round.to_s + "%"  %></li>
+      <li>Gender: <%= match[0].gender %></li>
+      <li>Status: <%= match[0].status %></li>
+      <li>Preference: <%= match[0].preference %></li>
+      <li>Location: <%= match[0].location %></li>
+      <li>Photos: <%= match[0].photos %></li>
+      <li><%=link_to match[0].name + "'s profile", user_path(match[0].id) %></li>
 
-  Compatibility Rating: <%= (100 + match[1]*0.892).round.to_s + "%"  %>
-
-  <li>Name: <%= match[0].name %></li>
-  <li>Gender: <%= match[0].gender %></li>
-  <li>Status: <%= match[0].status %></li>
-  <li>Preference: <%= match[0].preference %></li>
-  <li>Location: <%= match[0].location %></li>
-  <li>Photos: <%= match[0].photos %></li>
-  <li><%=link_to match[0].name + "'s profile", user_path(match[0].id) %></li><br>
-<% end %>
+    </div>
+  <% end %>
+</div>

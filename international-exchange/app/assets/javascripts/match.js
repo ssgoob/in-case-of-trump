@@ -25,10 +25,16 @@ app.match = {
   }
 },
   controller: {
+<<<<<<< HEAD
     init: function(){
         debugger;
         $(".like_box a").click(function(){
           
+=======
+    init: {
+        var $like = $('a');
+        $("body").click(function(){
+>>>>>>> 6d815a2006fcb2ae13c264c6b372a2bb3270ce03
           event.preventDefault();
           event.stopPropagation();
           var url;

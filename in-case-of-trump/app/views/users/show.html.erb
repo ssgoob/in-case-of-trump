@@ -18,11 +18,12 @@
 </ul>
 
 <%= link_to 'See My Matches', matches_path %><br><br>
-
+ <div class="like_box">
 <% if session[:user_id] == @user.id %>
   <%= link_to 'Update Info', edit_user_path %><br>
   <%= link_to 'Add Interests', new_interest_path %>
 <% else %>
+ 
   <% match = Match.match_exist(current_user, @user) %>
   <% if match.empty? || match[0].display_option(current_user.status) == 'like'%>
     <%= link_to 'Like', matches_path(id: @user.id), method: :post%>
@@ -31,5 +32,7 @@
   <% else %>
     <%= link_to 'Chat', match[0].conversation %>
   <% end %>
+
 <% end %>
 
+ </div>

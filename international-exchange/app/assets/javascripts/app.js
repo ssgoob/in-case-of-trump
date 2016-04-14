@@ -1,5 +1,7 @@
 app = {
 }
 
-$(function() {
+$(document).ready(function(){
+
+  app.match.controller.init();
 });

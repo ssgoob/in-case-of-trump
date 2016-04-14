@@ -1,17 +1,16 @@
-<h1>Log In</h1>
 
 <%= form_tag sessions_path do %>
+  <h1>Log In</h1>
+  <%= notice %></br></br>
 
-<%= notice %></br></br>
+  <%= label_tag :email %>
+  <%= text_field_tag :email %>
 
-<%= label_tag :email %>
-<%= text_field_tag :email %>
+  <br><br>
 
-<br><br>
+  <%= label_tag :password %>
+  <%= password_field_tag :password %>
+  <br><br>
 
-<%= label_tag :password %>
-<%= password_field_tag :password %>
-<br><br>
-
-<%= submit_tag 'Log In' %>
+  <%= submit_tag 'Log In' %>
 <% end %>

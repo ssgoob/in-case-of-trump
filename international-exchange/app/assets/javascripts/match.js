@@ -32,7 +32,7 @@ app.match = {
 
   controller: {
     init: {
-        var $like = $('a's);
+        var $like = $('a');
         $("body").click(function(){
           event.preventDefault();
           var url;

@@ -1,17 +1,20 @@
-<h1>Log In</h1>
+<div class="jumbotron">
+  <h2>Log In</h2>
+  <%= form_tag sessions_path do %>
 
-<%= form_tag sessions_path do %>
+      <div class="field">
+          <%= label_tag :email %><br>
+          <%= text_field_tag :email%>
+      </div>
+      <div class="field">
+        <%= label_tag :password %><br>
+        <%= password_field_tag :password%>
+      </div><br>
+      <div class="action">
+        <%= submit_tag 'Log In', :class=>"btn btn-primary" %>
+      </div>
 
-<%= notice %></br></br>
+  <% end %>
+</div>
+<%= notice %>
 
-<%= label_tag :email %>
-<%= text_field_tag :email %>
-
-<br><br>
-
-<%= label_tag :password %>
-<%= password_field_tag :password %>
-<br><br>
-
-<%= submit_tag 'Log In' %>
-<% end %>

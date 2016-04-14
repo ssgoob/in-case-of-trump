@@ -17,14 +17,14 @@
       </li>   -->
       <li>Photos: <%= @user.photos %></li>
     </ul>
-
+<div class="like_box">
     <ul class="nav nav-pills">
       <li><%= link_to 'See My Matches', matches_path %></li>
       <% if session[:user_id] == @user.id %>
           <li><a href=<%= edit_user_path %>>Update Info</a></li>
           <li><a href=<%= new_interest_path %>>Add Interests</a></li>
       <% else %>
-        <li class="like_box">
+        
           <% match = Match.match_exist(current_user, @user) %>
           <% if match.empty? || match[0].display_option(current_user.status) == 'like'%>
             <li><%= link_to 'Like', matches_path(id: @user.id), method: :post%></li>
@@ -33,9 +33,10 @@
           <% else %>
             <li><%= link_to 'Chat', match[0].conversation %></li>
           <% end %>
-        </li>
+       
       <% end %>
     </ul>
+</div>
   </div>
 </div>
 

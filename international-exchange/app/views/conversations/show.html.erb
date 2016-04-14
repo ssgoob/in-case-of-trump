@@ -1,0 +1,14 @@
+<%= form_for @message do |f| %>
+<%= f.label :content %>
+<%= f.text_area :content, placeholder: 'tell her you love her'  %>
+<%= f.hidden_field :conversation_id, value: @conversation.id %>
+<%= f.hidden_field :user_id, value: current_user.id %>
+<%= f.submit %>
+<% end %>
+
+<ul>
+  <% @conversation.messages.reverse.each do |message| %>
+    <li><%= User.find(message.user_id).name %>: 
+    <%= message.content %></li>
+  <%end%>
+</ul>

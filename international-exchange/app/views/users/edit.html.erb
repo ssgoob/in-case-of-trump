@@ -1,0 +1,14 @@
+<div class="jumbotron">
+  <%= form_for @user do |f| %>
+    <%= render partial: 'form', locals: {f: f} %>
+    
+    <%= f.label :location %>
+    <%= f.text_field :location%><br>
+
+    <%= f.label :photos %>
+    <%= f.file_field :photos%><br>
+
+    <%= f.submit 'Update Info', class: "btn btn-primary"%>
+  <% end %>
+</div>
+

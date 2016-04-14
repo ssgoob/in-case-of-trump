@@ -15,7 +15,11 @@ $(function(){
         refreshChat(data.messages);
         $('#message_content').val("");
       })
-    })
+    });
+    $('.new_message').on('keydown', function(event){
+      if(event.which == 13)
+        $('.new_message').submit();
+    });
     setInterval(onTick, 3000);
   })
 })

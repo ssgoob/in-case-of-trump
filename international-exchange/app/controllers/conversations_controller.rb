@@ -6,13 +6,22 @@ class ConversationsController < ApplicationController
       redirect_to matches_path
     end
     @message = Message.new
-    @messages = @conversation.messages.reverse
+    # @messages = @conversation.messages
   end
 
   def gather_messages
     @conversation = Conversation.find(params[:id])
-    # message_content_w_name = @conversation.messages.map do |
-    render json: @conversation.messages.reverse
+    messages_array = @conversation.messages.reverse.map do |message|
+        message_to_s = ""
+        message_user = User.find(message.user_id)
+        if message_user == current_user 
+          message_to_s = "You: " + message.content
+        else
+          message_to_s = message_user.name + ": " + message.content
+        end
+      end 
+    render json: {messages: messages_array}
   end
 
 end
+

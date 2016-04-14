@@ -13,6 +13,7 @@ $(function(){
         data: {message: {conversation_id: conversationId, content: content, user_id: user_id}}
       }).success(function(data){
         refreshChat(data.messages);
+        $('#message_content').val("");
       })
     })
     setInterval(onTick, 3000);
@@ -24,16 +25,14 @@ function onTick() {
   $.ajax({
     url: conversationPath+'/messages'
   }).success(function(data){
-    refreshChat(data);
+    refreshChat(data.messages);
   })
 }
 
 function refreshChat(data) {
   $('.chatbox').empty();
-    $('.chatbox').append('<ul>');
     for(var i = 0; i < data.length; i++){
-      var html = '<li>'+data[i].content+'</li>';
+      var html = data[i]+'<hr>';
       $('.chatbox').append(html);
     }
-    $('.chatbox').append('</ul>')
 }

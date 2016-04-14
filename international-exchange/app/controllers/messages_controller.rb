@@ -3,7 +3,16 @@ class MessagesController < ApplicationController
   def create
     @conversation = Conversation.find(params[:message][:conversation_id])
     @conversation.messages << Message.create(mes_params)
-    render json: {messages: @conversation.messages.reverse}
+      messages_array = @conversation.messages.reverse.map do |message|
+        message_to_s = ""
+        message_user = User.find(message.user_id)
+        if message_user == current_user 
+          message_to_s = "You: " + message.content
+        else
+          message_to_s = message_user.name + ": " + message.content
+        end
+      end 
+    render json: {messages: messages_array}
   end
 
 

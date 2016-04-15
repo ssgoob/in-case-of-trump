@@ -130,6 +130,13 @@ class User < ActiveRecord::Base
     (self == user || self.potential_matches.include?(user)) ? true : false
   end
 
+  def abbrev_address
+    address = self.location.split(",")
+    address.shift
+    address.join.gsub(/[^a-zA-Z]/, '').strip
+  end
+
+
 
 
 

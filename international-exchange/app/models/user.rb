@@ -56,9 +56,16 @@ class User < ActiveRecord::Base
     match.map {|match| match.user}  
   end  
 
-  def order_matches_by_quality
-    users = self.potential_matches
+  def age_preference
+    matches = self.potential_matches
+    matches.select do |match|
+      match.age >= self.minage && match.age <= self.maxage
+    end
+  end
 
+
+  def order_matches_by_quality
+    users = self.age_preference
 
     matchees = users.map do |matchee|
       [matchee, self.calculate_quality(matchee)]
@@ -122,6 +129,9 @@ class User < ActiveRecord::Base
   def has_access?(user)
     (self == user || self.potential_matches.include?(user)) ? true : false
   end
+
+
+
 
   # a citizen likes an international
   # the international gets added to the citizen's likes array

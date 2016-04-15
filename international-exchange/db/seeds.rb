@@ -4,21 +4,21 @@ require 'factory_girl_rails'
 # karen = User.create(name: "Karen", preference: 'M', gender: 'F', status: "International")
 # tito = User.create(name: "Tito", preference: 'F', gender: 'M', status: "Citizen")
 # sally = User.create(name: "Sally", preference: 'M', gender: 'F', status: "Citizen")
-10.times do
+20.times do
   10.times do
     FactoryGirl.create :citizen
   end
   sleep(2)
 end
 
-10.times do
+20.times do
   10.times do
     FactoryGirl.create :international
   end
   sleep(2)
 end
 
-  1000.times do
+  2000.times do
     FactoryGirl.create :user_interest
   end
 

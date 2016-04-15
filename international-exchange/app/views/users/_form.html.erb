@@ -33,3 +33,8 @@
 <%= f.label :preference %><br>
 <%= f.select :preference, ['M', 'F', 'Q', 'T'] %><br><br>
 
+<%= f.label :minage, "Minimum Age Preference" %><br>
+<%= f.select :minage, (18..100) %><br>
+
+<%= f.label :maxage, "Maximum Age Preference" %><br>
+<%= f.select :maxage, (18..100) %><br>

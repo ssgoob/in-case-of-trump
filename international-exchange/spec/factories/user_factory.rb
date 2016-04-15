@@ -21,7 +21,7 @@ FactoryGirl.define do
   # end
 
   sequence(:user_id) do |n|
-    (1 + Random.rand(200))
+    (1 + Random.rand(400))
   end  
 
   sequence(:interest_id) do |n|
@@ -54,7 +54,7 @@ FactoryGirl.define do
     gender
     latitude
     longitude
-    dob { Faker::Date.between(100.years.ago, 18.years.ago) }
+    dob { Faker::Date.between(60.years.ago, 18.years.ago) }
     preference
     email
     photos { Faker::Placeholdit.image }

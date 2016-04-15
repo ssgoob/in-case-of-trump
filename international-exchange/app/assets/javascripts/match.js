@@ -35,17 +35,21 @@ app.match = {
             url: url,
             type: 'POST',
             success: function(data){
+              debugger
               if (data.match.status === "pending i" || "pending c"){
                 $('.like').text("Liked")
+                console.log("test")
                     return false
-              // else if (data.match.status === "Matched") {
-              //   $('.like').text("Chat")
-              //   $('.like').text("Chat")
-              } 
-              }
-            
+              } else if (data.match.status === "Matched") {
+                debugger
+                $('.like').text("BLAH")
+                $('.like').text("Chat")
+              }          
+          }
         })
       })
-    }  
-  }  
+    }
 }
+}
+
+

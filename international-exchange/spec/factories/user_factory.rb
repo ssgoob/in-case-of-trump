@@ -2,8 +2,18 @@ FactoryGirl.define do
   sequence :preference do |n|
     ['M', 'F', 'Q', 'T'].sample
   end
+
   sequence :gender do |n|
-    ['M', 'F', 'Q', 'T'].sample
+   rng = [*0..100].sample
+    if rng > 60
+      'M'
+    elsif rng > 20
+      'F'
+    elsif rng > 10
+      'Q'
+    else
+      'T'
+    end
   end
   
   # sequence :interest_name_ do |n|

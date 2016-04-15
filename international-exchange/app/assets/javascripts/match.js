@@ -31,22 +31,26 @@ app.match = {
           event.stopPropagation();
           var url;
           url = $(this).attr('href')
-          $.ajax({
-            url: url,
-            type: 'POST',
-            success: function(data){
-              debugger
-              if (data.match.status === "pending i" || "pending c"){
-                $('.like').text("Liked")
-                console.log("test")
-                    return false
-              } else if (data.match.status === "Matched") {
+          if($(this).text() !== 'Chat'){
+            $.ajax({
+              url: url,
+              type: 'POST',
+              success: function(data){
                 debugger
-                $('.like').text("BLAH")
-                $('.like').text("Chat")
-              }          
-          }
-        })
+                if (data.match.status === "pending i" || data.match.status === "pending c"){
+                  $('.like').text("Liked")
+                  console.log("test")
+                      return false
+                } else if (data.match.status === "Matched") {
+                  debugger
+                  $('.like').text("Chat");
+                  $('.like').attr('href','/conversations/'+data.conversation_id);
+                  $('.like').removeAttr('data-method')
+                  $('.like').removeAttr('rel')
+                }          
+            }
+          })
+        }
       })
     }
 }

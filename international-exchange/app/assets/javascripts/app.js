@@ -1,7 +1,9 @@
-// app = {
-// }
+app = {
+}
 
-// $(document).ready(function(){
 
-//   app.match.controller.init();
-// });
+window.onload = initialize;
+
+function initialize() {
+  app.match.controller.init()
+};

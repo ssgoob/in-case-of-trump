@@ -1,4 +1,4 @@
-<%= notice %>
+  <%= notice %>
 <div class="jumbotron vertical-center">
   <div class="container">
     <h3><%= @user.name %></h3>
@@ -8,16 +8,8 @@
       <li>Status: <%= @user.status %></li>
       <li>Preference: <%= @user.preference %></li>
       <li>Location: <%= @user.location %></li>
-      <!-- <li>Interests:
-        <ul> 
-       <% @user.interests.each do |interest| %>
-        <li><%= interest.interest_name %></li>
-        <% end %>
-        </ul>
-      </li>   -->
       <li>Photos: <%= @user.photos %></li>
     </ul>
-<div class="like_box">
     <ul class="nav nav-pills">
       <li><%= link_to 'See My Matches', matches_path %></li>
       <% if session[:user_id] == @user.id %>
@@ -27,16 +19,15 @@
         
           <% match = Match.match_exist(current_user, @user) %>
           <% if match.empty? || match[0].display_option(current_user.status) == 'like'%>
-            <li><%= link_to 'Like', matches_path(id: @user.id), method: :post%></li>
+            <li><%= link_to 'Like', matches_path(id: @user.id), method: :post, :class => "like"%></li>
           <% elsif match[0].display_option(current_user.status) == 'disabled' %>
-            <li><%= link_to 'Liked', '#' %></li>
+            <li><%= link_to 'Liked', '#', :class => "like" %></li>
           <% else %>
             <li><%= link_to 'Chat', match[0].conversation %></li>
           <% end %>
        
       <% end %>
     </ul>
-</div>
   </div>
 </div>
 

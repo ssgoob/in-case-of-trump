@@ -35,6 +35,7 @@ class UsersController < ApplicationController
 # 3. If @suer is not in current_user's matches, keep me at index
 
   def show
+    binding.pry
     @user = User.find(params[:id])
     redirect_to matches_path unless (current_user.has_access?(@user))
     # unless(current_user == @user || current_user.all_matches.include?(@user))

@@ -38,6 +38,10 @@ app.match = {
               if (data.match.status === "pending i" || "pending c"){
                 $('.like').text("Liked")
                     return false
+              // else if (data.match.status === "Matched") {
+              //   $('.like').text("Chat")
+              //   $('.like').text("Chat")
+              } 
               }
             }
         })

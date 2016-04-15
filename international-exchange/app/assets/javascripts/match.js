@@ -43,7 +43,7 @@ app.match = {
               //   $('.like').text("Chat")
               } 
               }
-            }
+            
         })
       })
     }  

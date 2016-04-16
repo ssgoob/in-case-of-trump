@@ -17,15 +17,6 @@
           <li><a href=<%= new_interest_path %>>Add Interests</a></li>
       <% else %>
 
-                                                           
-        <% @recommendations = LocationClient.new(@user.latitude, @user.longitude).recommendations %>
-        <% @radius = 1000 %>
-        <% while @recommendations.empty? %>
-          <% @recommendations = LocationClient.new(@user.latitude, @user.longitude, @radius).recommendations %>
-            <% @radius *= 10 %>
-        <% end %>          
-        <% binding.pry %>
-        
           <% match = Match.match_exist(current_user, @user) %>
           <% if match.empty? || match[0].display_option(current_user.status) == 'like'%>
             <li><%= link_to 'Like', matches_path(id: @user.id), method: :post, :class => "like"%></li>
@@ -38,6 +29,26 @@
       <% end %>
     </ul>
   </div>
+
+  <div class="recommendations">                                              
+        <% @recommendations = LocationClient.new(@user.latitude, @user.longitude).recommendations %>
+        <% @radius = 1000 %>
+        <% while @recommendations.empty? %>
+          <% @recommendations = LocationClient.new(@user.latitude, @user.longitude, @radius).recommendations %>
+            <% @radius *= 10 %>
+        <% end %>          
+
+        <% @recommendations.each do |rec| %>
+        <br>
+        Name: <%= rec['name'] %><br>
+        Rating: <%= rec['rating'] %><br>
+        Price: <%= rec['price'] %><br>
+        Address: <%= rec['address'] %><br>
+        <% end %>
+
+      </div>
+        
+
 </div>
 
  </div>

@@ -1,20 +1,28 @@
 class LocationClient
 
-  attr_reader :query, :connection
+  
+  attr_reader :latitude, :longitude, :radius
 
-  def initialize
-    @query = query
-    @connection ||= LocationConnection.new(query)
+  def initialize(latitude, longitude, radius = 50)
+    @latitude = latitude
+    @longitude = longitude
+    @radius = radius
+    @connection ||= LocationAdapter.new(latitude, longitude, radius)
   end
 
-  def create_recommendations
-    connection.response_data.map do |rec|
-      dining = rec['rating']
-      parks = rec['green_stuff']
-      city = rec['name']
-      # weather...
-      Location.create(dining: dining, parks: parks, city: city)
+# an array of objects or hashes
+  def recommendations
+    @recommendations = []
+    @connection.response_data.map do |rec|
+      recommendation = {}
+      recommendation['name'] = rec["name"]
+      recommendation['rating'] = rec["rating"] 
+      recommendation['price'] = rec["price_level"]
+      recommendation['address'] = rec["vicinity"]
+      @recommendations << recommendation
     end
+    @recommendations
   end
-
+  
+  
 end  

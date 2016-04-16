@@ -169,9 +169,11 @@ class User < ActiveRecord::Base
   end
 
   def abbrev_address
-    address = self.location.split(",")
-    address.shift
-    address.join.gsub(/[^a-zA-Z]/, ' ').strip
+    if self.location != nil
+      address = self.location.split(",")
+      address.shift
+      address.join.gsub(/[^a-zA-Z]/, ' ').strip
+    end
   end
 
 

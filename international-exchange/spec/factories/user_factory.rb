@@ -49,6 +49,15 @@ FactoryGirl.define do
       Faker::Number.between(0.0, 116.5)
     end
   end
+
+  sequence(:minage) do |min|
+    Faker::Number.between(18, 41)
+  end  
+
+  sequence(:maxage) do |min|
+    Faker::Number.between(42, 60)
+  end
+
   factory :user do 
     name { Faker::Name.name }
     gender
@@ -57,8 +66,10 @@ FactoryGirl.define do
     dob { Faker::Date.between(60.years.ago, 18.years.ago) }
     preference
     email
-    photos { Faker::Placeholdit.image }
+    photos { Giphy.random.image_original_url }
     password "password"
+    minage 
+    maxage
   end
 
   factory :user_interest do

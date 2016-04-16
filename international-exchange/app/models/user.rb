@@ -48,18 +48,22 @@ class User < ActiveRecord::Base
   end
 
   def potential_matches
+    rejected_users = self.blocked_users
     if self.status == 'International'
-      match = Citizen.joins(:user).where('users.preference = ? AND users.gender = ?', self.gender, self.preference)
+      matches = Citizen.joins(:user).where('users.preference = ? AND users.gender = ?', self.gender, self.preference)
+      matches.reject do |match|
+        rejected_users.include?(match.id)
+      end  
     else
-      match = International.joins(:user).where('users.preference = ? AND users.gender = ?', self.gender, self.preference)
+      matches = International.joins(:user).where('users.preference = ? AND users.gender = ?', self.gender, self.preference)  
     end
-    match.map {|match| match.user}  
+    matches.reject { |match| rejected_users.include?(match.id) }.map {|match| match.user}
   end  
 
   def age_preference
     matches = self.potential_matches
     matches.select do |match|
-      match.age >= self.minage && match.age <= self.maxage
+      match.age >= self.minage && match.age <= self.maxage  && self.age >= match.minage && self.age <= maxage
     end
   end
 
@@ -118,6 +122,40 @@ class User < ActiveRecord::Base
     end
   end
 
+  def block(matchee)
+    if self.status == "Citizen"
+      citizen_id = self.status_id
+      international_id = matchee.status_id
+        match = Match.match_exist(self, matchee)
+        if match.present?
+          match[0].status = "Blocked"
+          match[0].save
+          match[0]
+        elsif !match.present? 
+          Match.create(citizen_id: citizen_id, international_id: international_id, status: "Blocked")
+        end
+    else 
+      citizen_id = matchee.status_id
+      international_id = self.status_id
+        match = Match.match_exist(self, matchee)
+        if match.present?
+          match[0].status = "Blocked"
+          match[0].save
+          match[0]
+        elsif !match.present? 
+          Match.create(citizen_id: citizen_id, international_id: international_id, status: "Blocked")
+        end
+    end    
+  end  
+
+  def blocked_users
+    if self.status == "International"
+      Match.where("international_id = ? AND status= ?", self.status_id, "Blocked").pluck(:citizen_id)
+    else
+      Match.where("citizen_id = ? AND status= ?", self.status_id, "Blocked").pluck(:international_id)
+    end
+  end  
+
   def matched
     if self.status == "International"
       Match.where("international_id = ? AND status= ?", self.status_id, "Matched")
@@ -133,7 +171,7 @@ class User < ActiveRecord::Base
   def abbrev_address
     address = self.location.split(",")
     address.shift
-    address.join.gsub(/[^a-zA-Z]/, '').strip
+    address.join.gsub(/[^a-zA-Z]/, ' ').strip
   end
 
 

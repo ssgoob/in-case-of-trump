@@ -50,9 +50,31 @@ app.match = {
             }
           })
         }
-      })
+      });
+      $('.dislike').click(function(event){
+        event.preventDefault();
+        // event.stopPropagation();
+        var url;
+        url = $(this).attr('href')
+        $.ajax({
+          url: url,
+          type: "POST"
+        })
+      })  
     }
 }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 

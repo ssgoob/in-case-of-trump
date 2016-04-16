@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get "logout" => "sessions#destroy", as: "logout"
   post "interest" => "users#add_user_interests", as: "add_interests"
   get "conversations/:id/messages" => "conversations#gather_messages", as: 'update_chat'
+  post "block_match" => "matches#block", as: "block_match"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

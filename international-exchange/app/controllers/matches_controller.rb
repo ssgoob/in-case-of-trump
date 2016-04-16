@@ -19,4 +19,10 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:id])
   end
 
+  def block
+    @user = User.find(params[:id])
+    @match = current_user.block(@user)
+    redirect_to '/matches'
+  end
+
 end

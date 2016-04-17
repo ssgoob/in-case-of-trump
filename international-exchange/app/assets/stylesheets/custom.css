@@ -25,6 +25,7 @@
 
 .fa {
   color:#FD5252;
+  display:block;
 }
 
 .love_button {
@@ -55,6 +56,7 @@
   height:250px; 
   margin:10px 20px;
   border-radius: 50%;
+  border: 5px solid #FD5252;
 }
 
 .pro_deets {
@@ -75,8 +77,109 @@ ul {
   box-shadow:inset 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-.well h3 {
+.pro_name {
   font-weight: 700;
+}
+
+div.col-md-9.pro_deets > ul.nav.nav-pills > li:nth-child(1) > a {
+  margin-left:0;
+}
+
+.pro_bio h3 {
+  font-size:20px;
+}
+
+input, input.btn.btn-primary, label, select, textarea {
+  margin: 0 auto;
+  display: block;
+  width: 40%;
+}
+
+label {
+    font-weight: 900;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.pro_edit_header {
+  height:260px;
+  background-image: url(http://www.saiedabbasi.com/wp-content/uploads/2016/04/profile_edit_dark.jpg);
+  
+}
+
+.pro_edit_header > h1 {
+  color: #FFF;
+  text-shadow: 1px .5px 5px #333;
+  font-weight: 500;
+  text-align: center;
+  font-size:3.5em;
+}
+
+.pro_edit_form_box {
+  padding-top:30px;
+}
+
+.pro_buttons {
+  text-align:center;
+  border: 1px solid #FD5252;
+  border-radius: 4px !important;
+  padding: 10px 22px !important;
+  margin: 0 10px;
+  text-decoration: none;
+  color:#FD5252;
+}
+
+.pro_buttons:hover {
+  background-color:#FD5252 !important;
+  color:#FFF;
+}
+
+.pro_buttons > .fa:hover {
+ color:#FFF !important;
+}
+
+/*login page*/
+.log_in {
+  background-image:url(http://www.saiedabbasi.com/wp-content/uploads/2016/04/log-in_background_opacity.jpg);
+  height:100vh;
+  background-size:cover;
+}
+
+.log_in h2, .log_in label {
+  color:#fff;
+  font-weight:500;
+}
+.log_in form > div:nth-child(4) {
+  margin-top:20px;
+}
+
+@media screen and (max-width: 1150px) {
+
+  .pro_deets {
+    text-align: center;
+    padding-left:0;
+  }
+
+  div.col-md-9.pro_deets > ul {
+    margin: 0 auto 20px;
+    display: block;
+    width: 500px;
+    padding-left:10px;
+  }
+/*  div.col-md-9.pro_deets > ul.nav.nav-pills > li {
+    margin:0 auto;
+    display:block;
+  }*/
+
+}
+
+@media screen and (max-width: 1000px) {
+
+  .pro_pic {
+    display:block;
+    margin:0 auto;
+  }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -106,3 +209,9 @@ ul {
   }
 
 }
+
+@media screen and (max-width: 768px) {
+  div.col-md-9.pro_deets > ul {
+    width:100%;
+  }
+}  

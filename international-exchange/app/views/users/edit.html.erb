@@ -1,14 +1,27 @@
-<div class="jumbotron">
-  <%= form_for @user do |f| %>
+<div class="jumbotron pro_edit_header">
+  <h1>Not another fish in the sea</h1>
+</div>
+<div class="row pro_edit_form_box">
+  <%= form_for @user, class: "form-inline" do |f| %>
     <%= render partial: 'form', locals: {f: f} %>
-    
-    <%= f.label :location %>
-    <%= f.text_field :location%><br>
 
-    <%= f.label :photos %>
-    <%= f.file_field :photos%><br>
+      <h3 style="text-align:center;">Match Bio</h3>
+
+      <%= f.label :movie %><br>
+      <%= f.text_field :movie, placeholder: "What is your favorite movie?" %><br>
+
+      <%= f.label :fear %><br>
+      <%= f.text_field :fear, placeholder: "What is your biggest fear?" %><br>
+
+      <%= f.label :book %><br>
+      <%= f.text_field :book, placeholder: "What is your favorite book?" %><br>
+
+      <%= f.label :bio %><br>
+      <%= f.text_area :bio, placeholder: "Tell everyone a little bit about yourself!" %><br>
+
+      <%= f.label :photos %>
+      <%= f.file_field :photos%><br>
 
     <%= f.submit 'Update Info', class: "btn btn-primary"%>
   <% end %>
 </div>
-

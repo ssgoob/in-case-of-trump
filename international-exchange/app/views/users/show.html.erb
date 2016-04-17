@@ -1,54 +1,50 @@
   <%= notice %>
 <div class="jumbotron vertical-center">
   <div class="container">
-    <img src=<%= @user.photos %> width="250px" height="250px">
-    <h3><%= @user.name %></h3>
-    <ul>
-      <li>Age: <%= @user.age %></li>
-      <li>Gender: <%= @user.gender %></li>
-      <li>Status: <%= @user.status %></li>
-      <li>Preference: <%= @user.preference %></li>
-      <li>Location: <%= @user.abbrev_address %></li>
-    </ul>
-    <ul class="nav nav-pills">
-      <li><%= link_to 'See My Matches', matches_path %></li>
-      <% if session[:user_id] == @user.id %>
-          <li><a href=<%= edit_user_path %>>Update Info</a></li>
-          <li><a href=<%= new_interest_path %>>Add Interests</a></li>
-      <% else %>
+    <div class="col-md-3"><img class="pro_pic" src=<%= @user.photos %>></div>
+    <div class="col-md-9  pro_deets">
+      <h3 class="pro_name"><%= @user.name %></h3>
+      <ul>
+        <li>Age: <%= @user.age %></li>
+        <li>Gender: <%= @user.gender %></li>
+        <li>Status: <%= @user.status %></li>
+        <li>Preference: <%= @user.preference %></li>
+        <li>Location: <%= @user.abbrev_address %></li>
+      </ul>
+      <ul class="nav nav-pills">
+        <li><a class="pro_buttons" href=<%= matches_path %>><%= fa_icon "globe", class: "fa-2x" %><br>See My Matches</a></li>
+        <% if session[:user_id] == @user.id %>
+            <li><a class="pro_buttons" href=<%= edit_user_path %>><%= fa_icon "upload", class: "fa-2x" %><br>Update Info</a></li>
+            <li><a class="pro_buttons" href=<%= new_interest_path %>><%= fa_icon "pencil-square-o", class: "fa-2x" %><br>Add Interests</a></li>
+        <% else %>
 
-          <% match = Match.match_exist(current_user, @user) %>
-          <% if match.empty? || match[0].display_option(current_user.status) == 'like'%>
-            <li><%= link_to 'Like', matches_path(id: @user.id), method: :post, :class => "like"%></li>
-          <% elsif match[0].display_option(current_user.status) == 'disabled' %>
-            <li><%= link_to 'Liked', '#', :class => "like" %></li>
-          <% else %>
-            <li><%= link_to 'Chat', match[0].conversation %></li>
-          <% end %>
-        <li><%= link_to 'Dislike', block_match_path(id: @user.id), method: :post, :class => 'dislike' %></li>
-      <% end %>
-    </ul>
+            <% match = Match.match_exist(current_user, @user) %>
+            <% if match.empty? || match[0].display_option(current_user.status) == 'like'%>
+              <li><%= fa_icon "fire", class: "fa-2x" %><%= link_to 'Like', matches_path(id: @user.id), method: :post, :class => "like btn btn-primary"%></li>
+            <% elsif match[0].display_option(current_user.status) == 'disabled' %>
+              <%= fa_icon "check-square-o", class: "fa-2x" %><li><%= link_to 'Liked', '#', :class => "like btn" %></li>
+            <% else %>
+              <%= fa_icon "comments", class: "fa-2x" %><li><%= link_to 'Chat', match[0].conversation %></li>
+            <% end %>
+          <li><%= fa_icon "trash-o", class: "fa-2x btn" %><%= link_to 'Dislike', block_match_path(id: @user.id), method: :post, :class => 'dislike' %></li>
+        <% end %>
+      </ul>
+    </div>  
   </div>
 
-  <div class="recommendations">                                              
-        <% @recommendations = LocationClient.new(@user.latitude, @user.longitude).recommendations %>
-        <% @radius = 1000 %>
-        <% while @recommendations.empty? %>
-          <% @recommendations = LocationClient.new(@user.latitude, @user.longitude, @radius).recommendations %>
-            <% @radius *= 10 %>
-        <% end %>          
-
-        <% @recommendations.each do |rec| %>
-        <br>
-        Name: <%= rec['name'] %><br>
-        Rating: <%= rec['rating'] %><br>
-        Price: <%= rec['price'] %><br>
-        Address: <%= rec['address'] %><br>
-        <% end %>
-
-      </div>
-        
-
+</div> 
+<div class="row">
+  <div class="col-md-12 pro_bio">
+    <% if session[:user_id] == @user.id && !@user.completed_bio? %>
+      <strong>Complete your profile so your matches can get to know you!</strong><br><a href=<%= edit_user_path %>>Update Info</a>
+    <% end %>
+    <% if @user.completed_bio? %>
+      <h3>Favorite Bio:</h3 >
+      <h3>Favorite Movie:</h3 >
+      <h3>Favorite Book:</h3 >
+      <h3>Biggest Fear:</h3 >
+    <% end %>
+  </div>
 </div>
 
- </div>
+      

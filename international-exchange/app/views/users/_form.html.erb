@@ -5,36 +5,36 @@
       <% end %>
     </ul>
   <% end %>
-  
-<%= f.label :email %><br>
-<%= f.email_field :email%><br>
 
-<%= f.label :password %><br>
-<%= f.password_field :password %><br>
+    <%= f.label :email %><br>
+    <%= f.email_field :email%><br>
 
-<%= f.label :password_confirmation %><br>
-<%= f.password_field :password_confirmation %><br>
+    <%= f.label :password %><br>
+    <%= f.password_field :password %><br>
 
-<%= f.label :name %><br>
-<%= f.text_field :name%><br>
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation %><br>
 
-<%= f.label :dob, 'Date of Birth' %><br>
-<%= f.date_select :dob, start_year: Time.now.year - 100, end_year: Time.now.year-18  %><br>
+    <%= f.label :name %><br>
+    <%= f.text_field :name%><br>
 
-<%= f.label :gender %><br>
-<%= f.select :gender, ['M', 'F', 'Q', 'T'] %><br>
+    <%= f.label :dob, 'Date of Birth' %><br>
+    <%= f.date_select :dob, start_year: Time.now.year - 100, end_year: Time.now.year-18  %><br>
 
-<%= f.label :location %><br>
-<%= f.text_field :location%><br>
+    <%= f.label :gender %><br>
+    <%= f.select :gender, ['M', 'F', 'Q', 'T'] %><br>
 
-<%= f.label :status %><br>
-<%= f.select :status, ['Citizen', 'International'] %><br>
+    <%= f.label :location %><br>
+    <%= f.text_field :location%><br>
 
-<%= f.label :preference %><br>
-<%= f.select :preference, ['M', 'F', 'Q', 'T'] %><br><br>
+    <%= f.label :status %><br>
+    <%= f.select :status, ['Citizen', 'International'] %><br>
 
-<%= f.label :minage, "Minimum Age Preference" %><br>
-<%= f.select :minage, (18..100) %><br>
+    <%= f.label :preference %><br>
+    <%= f.select :preference, ['M', 'F', 'Q', 'T'] %><br><br>
 
-<%= f.label :maxage, "Maximum Age Preference" %><br>
-<%= f.select :maxage, (18..100) %><br>
+    <%= f.label :minage, "Minimum Age Preference" %><br>
+    <%= f.select :minage, (18..100) %><br>
+
+    <%= f.label :maxage, "Maximum Age Preference" %><br>
+    <%= f.select :maxage, (18..100) %><br>

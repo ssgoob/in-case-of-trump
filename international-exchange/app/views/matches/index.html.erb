@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-md-3"><img class="pro_pic" src=<%= match[0].photos %>></div>
         <div class="col-md-6 pro_deets">
-          <h3><%= match[0].name %></h3>
+          <h3 class="pro_name"><%= match[0].name %></h3>
           <ul>
             <li>Gender: <%= match[0].gender %></li>
             <li>Age: <%= match[0].age %></li>
@@ -15,7 +15,7 @@
             <li><%=link_to match[0].name + "'s profile", user_path(match[0].id) %></li>
           </ul>
         </div>
-        <div class="col-md-3 pro_compat"> <%= fa_icon "heartbeat", class: "fa-5x" %><h3>Compatibility Rating: <%= (100 + match[1]*0.892).round.to_s + "%"  %></h3>
+        <div class="col-md-3 pro_compat"> <%= fa_icon "heartbeat", class: "fa-5x" %><h3 class="pro_name">Compatibility Rating: <%= (100 + match[1]*0.892).round.to_s + "%"  %></h3>
         </div>
       </div>
       

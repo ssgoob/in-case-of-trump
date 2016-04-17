@@ -60,16 +60,21 @@ app.match = {
           url: url,
           type: "POST"
         })
-      })  
+      });
+      $(".pro_buttons").hover(
+        function(){
+          $(this).children().css("color", "white");
+        },
+        function () {
+          $(this).children().css("color", "#FD5252");
+        }
+      );  
     }
 }
 }
 
-
-
-
-
-
+ 
+  
 
 
 

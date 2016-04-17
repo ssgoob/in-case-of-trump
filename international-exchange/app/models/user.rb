@@ -176,7 +176,9 @@ class User < ActiveRecord::Base
     end
   end
 
-
+  def completed_bio?
+    self.bio != nil || self.movie != nil || self.book != nil || self.fear != nil
+  end
 
 
 

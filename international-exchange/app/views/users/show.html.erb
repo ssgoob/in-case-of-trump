@@ -13,6 +13,7 @@
       </ul>
       <ul class="nav nav-pills">
         <li><a class="pro_buttons" href=<%= matches_path %>><%= fa_icon "globe", class: "fa-2x" %><br>See My Matches</a></li>
+
         <% if session[:user_id] == @user.id %>
             <li><a class="pro_buttons" href=<%= edit_user_path %>><%= fa_icon "upload", class: "fa-2x" %><br>Update Info</a></li>
             <li><a class="pro_buttons" href=<%= new_interest_path %>><%= fa_icon "pencil-square-o", class: "fa-2x" %><br>Add Interests</a></li>
@@ -20,11 +21,11 @@
 
             <% match = Match.match_exist(current_user, @user) %>
             <% if match.empty? || match[0].display_option(current_user.status) == 'like'%>
-              <li><%= fa_icon "fire", class: "fa-2x" %><%= link_to 'Like', matches_path(id: @user.id), method: :post, :class => "like btn btn-primary"%></li>
+              <li><a class="pro_buttons like btn" href=<%= matches_path(id: @user.id)%>> <%= fa_icon "fire", class: "fa-2x" %><br>Like</a></li>
             <% elsif match[0].display_option(current_user.status) == 'disabled' %>
-              <%= fa_icon "check-square-o", class: "fa-2x" %><li><%= link_to 'Liked', '#', :class => "like btn" %></li>
+              <li><a class="pro_buttons like btn" href="#"> <%= fa_icon "fire", class: "fa-2x" %><br>Liked</a></li>
             <% else %>
-              <%= fa_icon "comments", class: "fa-2x" %><li><%= link_to 'Chat', match[0].conversation %></li>
+              <li><a class="pro_buttons" href= match[0].conversation>> <%= fa_icon "comments", class: "fa-2x" %><br>Chat</a></li>
             <% end %>
           <li><%= fa_icon "trash-o", class: "fa-2x btn" %><%= link_to 'Dislike', block_match_path(id: @user.id), method: :post, :class => 'dislike' %></li>
         <% end %>
@@ -39,10 +40,10 @@
       <strong>Complete your profile so your matches can get to know you!</strong><br><a href=<%= edit_user_path %>>Update Info</a>
     <% end %>
     <% if @user.completed_bio? %>
-      <h3>Favorite Bio:</h3 >
-      <h3>Favorite Movie:</h3 >
-      <h3>Favorite Book:</h3 >
-      <h3>Biggest Fear:</h3 >
+      <h3>Favorite Bio: </h3 ><%= @user.bio %>
+      <h3>Favorite Movie: </h3 ><%= @user.movie %>
+      <h3>Favorite Book: </h3 ><%= @user.book %>
+      <h3>Biggest Fear: </h3 ><%= @user.fear %>
     <% end %>
   </div>
 </div>

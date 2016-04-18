@@ -72,10 +72,10 @@ FactoryGirl.define do
     password "password"
     minage 
     maxage
-    fear { Faker::Superhero.power }
-    movie { Faker::Superhero.name }
+    fear { Faker::Lorem.word }
+    movie { Faker::Lorem.word }
     book { Faker::Book.title }
-    bio { Faker::Hipster.paragraphs(1) }
+    bio { Faker::Hipster.paragraphs(1)[0] }
   end
 
   factory :user_interest do

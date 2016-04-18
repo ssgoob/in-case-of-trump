@@ -25,9 +25,9 @@
             <% elsif match[0].display_option(current_user.status) == 'disabled' %>
               <li><a class="pro_buttons like btn" href="#"> <%= fa_icon "fire", class: "fa-2x" %><br>Liked</a></li>
             <% else %>
-              <li><a class="pro_buttons" href= match[0].conversation>> <%= fa_icon "comments", class: "fa-2x" %><br>Chat</a></li>
+              <li><a class="pro_buttons" href=<%=conversation_path(match[0].conversation)%>> <%= fa_icon "comments", class: "fa-2x" %><br>Chat</a></li>
             <% end %>
-          <li><%= fa_icon "trash-o", class: "fa-2x btn" %><%= link_to 'Dislike', block_match_path(id: @user.id), method: :post, :class => 'dislike' %></li>
+          <li><a class="pro_buttons dislike" href=<%= block_match_path(id: @user.id)%> rel="nofollow" data-method="post"> <%= fa_icon "trash-o", class: "fa-2x" %><br>Dislike</a></li>
         <% end %>
       </ul>
     </div>  

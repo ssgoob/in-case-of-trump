@@ -37,15 +37,14 @@ app.match = {
               type: 'POST',
               success: function(data){
                 if (data.match.status === "pending i" || data.match.status === "pending c"){
-                  $('.like').text("Liked")
+                  $('.like').html('<a class="like" href="#"> <i class="fa fa-fire fa-2x" style="color: rgb(253, 82, 82);"></i><br style="color: rgb(253, 82, 82);">Liked</a>');
                   console.log("test")
                       return false
                 } else if (data.match.status === "Matched") {
-                  $('.like').text("Chat");
-                  $('.like').attr('href','/conversations/' + data.conversation_id);
-                  $('.like').removeAttr('data-method')
-                  $('.like').removeAttr('rel')
-                  $('.like').removeClass()
+                  $('.like').html('<a class="like" href="#"> <i class="fa fa-fire fa-2x" style="color: rgb(253, 82, 82);"></i><br style="color: rgb(253, 82, 82);">Liked</a>');
+                  console.log("test")
+                  $('.like').parent().html('<a class="pro_buttons convo" href="#"> <i class="fa fa-comments fa-2x" style="color: rgb(253, 82, 82);"></i><br style="color: rgb(253, 82, 82);">Chat</a>')
+                  $('.convo').attr('href','/conversations/' + data.conversation_id);
                 }          
             }
           })

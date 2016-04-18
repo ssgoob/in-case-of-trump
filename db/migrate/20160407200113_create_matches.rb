@@ -4,7 +4,6 @@ class CreateMatches < ActiveRecord::Migration
       t.string :status
       t.integer :citizen_id
       t.integer :international_id
-      t.integer :conversation_id
       t.timestamps null: false
     end
   end

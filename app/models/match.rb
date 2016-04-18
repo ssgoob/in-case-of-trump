@@ -1,7 +1,6 @@
 class Match < ActiveRecord::Base
   belongs_to :citizen
   belongs_to :international
-  has_one :conversation
 
   def self.conversing_users
     citizen_count = Citizen.joins(:matches).where('matches.status = "Matched"').group('citizens.id').count 

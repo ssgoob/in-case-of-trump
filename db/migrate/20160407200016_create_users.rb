@@ -3,7 +3,7 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string :name
       t.string :gender
-      t.integer :age
+      t.datetime :dob
       t.string :location
       t.string :preference
       t.string :interests

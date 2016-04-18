@@ -49,8 +49,9 @@ group :development, :test do
   gem "database_cleaner"
   gem 'httparty'
   gem "factory_girl_rails"
-  gem 'google_places'
+  gem 'faker'
   gem 'giphy'
+  gem 'google_places'
   gem 'sqlite3'
 end
 
@@ -62,6 +63,8 @@ group :production do
   gem 'rails_12factor'
   gem "factory_girl_rails"
   gem 'faker'
+  gem 'giphy'
+  gem 'google_places'
 end
 
 

@@ -13,6 +13,7 @@
 
 //= require jquery
 //= require jquery_ujs
+//= require_tree ../../../vendor/assets/javascripts/jquery-ui-1.11.4.custom/.
 //= require bootstrap
 //= require_tree ../../../vendor/assets/javascripts/.
 //= require_tree .

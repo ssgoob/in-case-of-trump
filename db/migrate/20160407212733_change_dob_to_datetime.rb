@@ -1,5 +1,5 @@
 class ChangeDobToDatetime < ActiveRecord::Migration
   def change
-    change_column :users, :dob, :datetime
+    change_column :users, :dob, :timestamp
   end
 end

@@ -72,8 +72,8 @@ FactoryGirl.define do
     password "password"
     minage 
     maxage
-    fear { Faker::Lorem.word }
-    movie { Faker::Lorem.word }
+    fear { Faker::Hacker.say_something_smart }
+    movie { Faker::App.name }
     book { Faker::Book.title }
     bio { Faker::Hipster.paragraphs(1)[0] }
   end

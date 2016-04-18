@@ -47,8 +47,8 @@ group :development, :test do
   gem 'annotate'
   gem 'rspec-rails'
   gem "database_cleaner"
-  gem "factory_girl_rails"
   gem 'httparty'
+  gem "factory_girl_rails"
   gem 'google_places'
   gem 'giphy'
   gem 'sqlite3'
@@ -60,6 +60,7 @@ group :production do
   gem 'pg'
   gem 'google-analytics-rails'
   gem 'rails_12factor'
+  gem "factory_girl_rails"
 end
 
 

@@ -75,7 +75,7 @@ FactoryGirl.define do
     fear { Faker::Hacker.say_something_smart }
     movie { Faker::App.name }
     book { Faker::Book.title }
-    bio { Faker::Hipster.paragraphs(1)[0] }
+    bio { Faker::Hipster.paragraphs(2)[0] }
   end
 
   factory :user_interest do

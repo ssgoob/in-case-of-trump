@@ -35,17 +35,29 @@
 
 </div> 
 <div class="row">
-  <div class="col-md-12 pro_bio">
     <% if session[:user_id] == @user.id && !@user.completed_bio? %>
-      <strong>Complete your profile so your matches can get to know you!</strong><br><a href=<%= edit_user_path %>>Update Info</a>
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-8 pro_bio">
+        <strong>Complete your profile so your matches can get to know you!</strong><br><a href=<%= edit_user_path %>>Update Info</a>
+      </div>
+      <div class="col-md-2">
+      </div>
     <% end %>
     <% if @user.completed_bio? %>
-      <h3>Favorite Bio: </h3 ><%= @user.bio %>
-      <h3>Favorite Movie: </h3 ><%= @user.movie %>
-      <h3>Favorite Book: </h3 ><%= @user.book %>
-      <h3>Biggest Fear: </h3 ><%= @user.fear %>
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-5 pro_bio">
+        <h3>Favorite Bio:</h3 ><strong><%= @user.bio %></strong>
+      </div>
+      <div class="col-md-5 pro_bio">  
+        <h3>Favorite Movie:</h3 ><strong><%= @user.movie %></strong>
+        <h3>Favorite Book:</h3 ><strong><%= @user.book %></strong>
+        <h3>Biggest Fear:</h3 ><strong><%= @user.fear %></strong>
+      </div>  
+      <div class="col-md-1">
+      </div>
     <% end %>
-  </div>
 </div>
 
       

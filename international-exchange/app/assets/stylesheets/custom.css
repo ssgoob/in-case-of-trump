@@ -138,6 +138,18 @@ label {
  color:#FFF !important;
 }
 
+/*interest form*/
+
+.int_form input, .int_form label, .int_form select {
+    display: inline-block;
+    width: 1.5%;
+}
+
+.int_form input.btn.btn-primary {
+  display: inline-block;
+  margin-top:15px;
+}
+
 /*login page*/
 .log_in {
   background-image:url(http://www.saiedabbasi.com/wp-content/uploads/2016/04/log-in_background_opacity.jpg);

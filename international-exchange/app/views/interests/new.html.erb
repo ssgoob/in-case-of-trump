@@ -1,7 +1,7 @@
 <div class='jumbotron'>
 <%= current_user.name %>
 Rate Your Interest for the Following Activities:
-<%= form_tag(add_interests_path, method: 'POST') do %>
+<%= form_tag(add_interests_path, method: 'POST', :class => 'int_form') do %>
   <% @interests.each do |interest| %>
     <%= label_tag interest.id, interest.interest_name %><br>
     <%= label_tag '1' %> <%= radio_button_tag interest.id, 1 %>
